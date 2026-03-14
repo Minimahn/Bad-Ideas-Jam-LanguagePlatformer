@@ -5,7 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Variables")]
     [SerializeField] private float walkSpeed = 3.0f;
+    [SerializeField] private float braking = 1.0f;
     [SerializeField] private float sprintSpeed = 4.5f;
+    [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
 
     [Header("Ground Checking")]
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Secret Variables oooh
     private bool _hasJumped = false;
+    [SerializeField] private float _currSpeed = 0.0f;
 
     private Rigidbody2D rigidBody;
     private Collider2D col;
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        _currSpeed = walkSpeed;
         rigidBody = GetComponent<Rigidbody2D>();    // Rigidbody2D > PlayerController for 2D imo so I'm sticking with that
         col = GetComponent<Collider2D>();
         inputHandler = PlayerInputHandler.Instance; // The InputHandler Instance
@@ -32,16 +36,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // L&R Movement Logic
-        float speed = walkSpeed;
-
+        // work towards making _currspeed sprint speed
         if (inputHandler.SprintValue > 0)
-            speed = sprintSpeed;
+            _currSpeed = Mathf.Clamp(_currSpeed + acceleration * Time.deltaTime, -6.7f, sprintSpeed);
+        else
+            _currSpeed = Mathf.Clamp(_currSpeed - braking * Time.deltaTime, walkSpeed, sprintSpeed);
 
         if (inputHandler.MoveInput != Vector2.zero)
-            rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * speed, rigidBody.linearVelocityY);
+            rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
         else
-            rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocityY); // erm... 0 * anything = 0 dumbass FUCK YOU!!!
+            rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocityY);
 
         // Jump Logic
         if (IsGrounded() && inputHandler.JumpTriggered && !_hasJumped)
