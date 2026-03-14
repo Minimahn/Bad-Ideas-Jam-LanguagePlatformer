@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 811070544}
   - component: {fileID: 811070543}
   - component: {fileID: 811070542}
+  - component: {fileID: 811070545}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -382,11 +383,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   walkSpeed: 5
+  braking: 5
   sprintSpeed: 7
+  acceleration: 5
   jumpForce: 50
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  _currSpeed: 0
+--- !u!114 &811070545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811070539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097011386832f8947bbdf157ff9848a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VerbalCasting
+  commands:
+  - command: Fire
+    componentID: 0
+  - command: Water
+    componentID: 1
+  - command: Earth
+    componentID: 2
+  currentCommands: 000000000000000000000000
 --- !u!1 &1270030695
 GameObject:
   m_ObjectHideFlags: 0
