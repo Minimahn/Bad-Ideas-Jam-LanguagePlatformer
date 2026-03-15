@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintSpeed = 4.5f;
     [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
-
     [Header("Ground Checking")]
     [SerializeField] public LayerMask groundLayer;
 
@@ -42,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         else
             _currSpeed = Mathf.Clamp(_currSpeed - braking * Time.deltaTime, walkSpeed, sprintSpeed);
 
+        
+
         if (inputHandler.MoveInput != Vector2.zero)
             rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
         else
@@ -56,5 +57,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded() && !inputHandler.JumpTriggered)
             _hasJumped = false;
+    }
+
+    private void FixedUpdate()
+    {
+        
+
+        if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
+        {
+            rigidBody.linearVelocityY = rigidBody.linearVelocityY * 0.7f;
+        }
     }
 }
