@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
 
     // Secret Variables oooh
+    private bool _canJump = false;
     private bool _hasJumped = false;
     [SerializeField] private float _currSpeed = 0.0f;
 
     private Rigidbody2D rigidBody;
     private Collider2D col;
+    private Collider2D feetCol;
     private PlayerInputHandler inputHandler;
 
     private void Start()
@@ -25,13 +27,20 @@ public class PlayerMovement : MonoBehaviour
         _currSpeed = walkSpeed;
         rigidBody = GetComponent<Rigidbody2D>();    // Rigidbody2D > PlayerController for 2D imo so I'm sticking with that
         col = GetComponent<Collider2D>();
+        feetCol = transform.Find("FeetBox").GetComponent<Collider2D>();
         inputHandler = PlayerInputHandler.Instance; // The InputHandler Instance
     }
 
     bool IsGrounded()
     {
-        return Physics2D.Raycast(new Vector2(transform.position.x, col.bounds.min.y), Vector2.down, 0.1f, groundLayer);
+        return feetCol.transform.GetComponent<GroundDetection>().getGroundStatus();
     }
+    bool IsCoyoteGrounded()
+    {
+        return feetCol.transform.GetComponent<GroundDetection>().getJumpStatus();
+    }
+
+
 
     private void Update()
     {
@@ -49,23 +58,26 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocityY);
 
         // Jump Logic
-        if (IsGrounded() && inputHandler.JumpTriggered && !_hasJumped)
+        if (IsCoyoteGrounded() && inputHandler.JumpTriggered && !_hasJumped)
         {
             rigidBody.AddForceY(jumpForce, ForceMode2D.Impulse);
             _hasJumped = true;
         }
 
-        if (IsGrounded() && !inputHandler.JumpTriggered)
+        if (IsCoyoteGrounded() && !inputHandler.JumpTriggered) // ???
             _hasJumped = false;
     }
 
     private void FixedUpdate()
     {
-        
+        if (!IsGrounded()) // have player fall
+        {
+            rigidBody.AddForceY(-4f, ForceMode2D.Impulse);
+        }
 
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
         {
-            rigidBody.linearVelocityY = rigidBody.linearVelocityY * 0.7f;
+            //rigidBody.linearVelocityY = rigidBody.linearVelocityY * 0.7f;
         }
     }
 }
