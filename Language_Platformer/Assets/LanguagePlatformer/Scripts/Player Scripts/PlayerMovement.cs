@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintSpeed = 4.5f;
     [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float fallAcceleration = 1f;
     [Header("Ground Checking")]
     [SerializeField] public LayerMask groundLayer;
 
@@ -52,10 +53,19 @@ public class PlayerMovement : MonoBehaviour
 
         
 
-        if (inputHandler.MoveInput != Vector2.zero)
+        if (inputHandler.MoveInput != Vector2.zero && IsCoyoteGrounded()) 
+        {
             rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
+        } 
+        else if (inputHandler.MoveInput != Vector2.zero && !IsCoyoteGrounded())
+        {
+            //Greg question with new unity input, save 4 later.
+        }
         else
+        {
             rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocityY);
+        } 
+        
 
         // Jump Logic
         if (IsCoyoteGrounded() && inputHandler.JumpTriggered && !_hasJumped)
@@ -70,9 +80,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsGrounded()) // have player fall
+        if (IsGrounded()) // have player fall
         {
-            rigidBody.AddForceY(-4f, ForceMode2D.Impulse);
+            fallAcceleration = 1f;
+        }
+        else
+        {
+            rigidBody.AddForceY(-4f * fallAcceleration, ForceMode2D.Impulse);
+            fallAcceleration += 0.02f;
         }
 
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
