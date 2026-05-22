@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class PlayerCamera : MonoBehaviour
+{
+    private Camera cam;
+    [SerializeField] private GameObject plr;
+
+
+    void Start()
+    {
+        cam = GetComponent<Camera>();
+
+    }
+
+    void Update()
+    {
+        transform.position = new Vector3(plr.transform.position.x, plr.transform.position.y, transform.position.z);
+
+    }
+
+}

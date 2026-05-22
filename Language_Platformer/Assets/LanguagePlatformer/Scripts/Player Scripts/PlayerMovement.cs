@@ -1,3 +1,4 @@
+
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Variables")]
     [SerializeField] private float walkSpeed = 3.0f;
     [SerializeField] private float braking = 1.0f;
-    [SerializeField] private float sprintSpeed = 4.5f;
     [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
     [SerializeField] private float fallAcceleration = 1f;
@@ -17,11 +17,15 @@ public class PlayerMovement : MonoBehaviour
     private bool _canJump = false;
     private bool _hasJumped = false;
     [SerializeField] private float _currSpeed = 0.0f;
+    private float SLOW_MULTIPLIER = 0.67f;
+    private float FAST_MULTIPLIER = 1.5f;
+    private bool slowGliding = false;
 
     private Rigidbody2D rigidBody;
     private Collider2D col;
     private Collider2D feetCol;
     private PlayerInputHandler inputHandler;
+    private Animator animator;
 
     private void Start()
     {
@@ -30,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         col = GetComponent<Collider2D>();
         feetCol = transform.Find("FeetBox").GetComponent<Collider2D>();
         inputHandler = PlayerInputHandler.Instance; // The InputHandler Instance
+        animator = GetComponent<Animator>();
     }
 
     bool IsGrounded()
@@ -47,19 +52,30 @@ public class PlayerMovement : MonoBehaviour
     {
         // work towards making _currspeed sprint speed
         if (inputHandler.SprintValue > 0)
-            _currSpeed = Mathf.Clamp(_currSpeed + acceleration * Time.deltaTime, -6.7f, sprintSpeed);
+            _currSpeed = Mathf.Clamp(_currSpeed + acceleration * Time.deltaTime, -6.7f, (walkSpeed * FAST_MULTIPLIER));
         else
-            _currSpeed = Mathf.Clamp(_currSpeed - braking * Time.deltaTime, walkSpeed, sprintSpeed);
+            _currSpeed = Mathf.Clamp(_currSpeed - braking * Time.deltaTime, walkSpeed, (walkSpeed * FAST_MULTIPLIER));
 
         
 
         if (inputHandler.MoveInput != Vector2.zero && IsCoyoteGrounded()) 
         {
             rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
+            changeAnimState(inputHandler.MoveInput.x);
         } 
         else if (inputHandler.MoveInput != Vector2.zero && !IsCoyoteGrounded())
         {
-            //Greg question with new unity input, save 4 later.
+            print("RB: " + rigidBody.linearVelocity.x + " <-> Input: " + inputHandler.MoveInput.x);
+            if (rigidBody.linearVelocityX == 0 || slowGliding)
+            {
+                slowGliding = true;
+                rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * (_currSpeed * SLOW_MULTIPLIER), rigidBody.linearVelocityY);
+            }
+            else
+            {
+                rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
+            }
+            changeAnimState(inputHandler.MoveInput.x);
         }
         else
         {
@@ -83,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded()) // have player fall
         {
             fallAcceleration = 1f;
+            slowGliding = false;
         }
         else
         {
@@ -94,5 +111,18 @@ public class PlayerMovement : MonoBehaviour
         {
             //rigidBody.linearVelocityY = rigidBody.linearVelocityY * 0.7f;
         }
+    }
+
+    private void changeAnimState(float dir)
+    {
+        if (dir < 0 && IsGrounded())
+            animator.Play("WalkLeft");
+        else if (dir > 0 && IsGrounded())
+            animator.Play("WalkRight");
+        else if (dir < 0 && !IsGrounded())
+            animator.Play("JumpLeft");
+        else if (dir > 0 && !IsGrounded())
+            animator.Play("JumpRight");
+
     }
 }

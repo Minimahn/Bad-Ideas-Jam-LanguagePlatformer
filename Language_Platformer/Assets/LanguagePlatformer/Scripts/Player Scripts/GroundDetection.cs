@@ -8,7 +8,7 @@ public class GroundDetection : MonoBehaviour
     private Collider2D col;
     private int groundAdjacents = 0;
     private bool runningCor = false;
-    private static float GROUND_TRIGGER_DELAY = 0.1f;
+    private static float GROUND_TRIGGER_DELAY = 0.15f;
     private bool onGround = false;
     private bool canJump = false;
     void Start()
