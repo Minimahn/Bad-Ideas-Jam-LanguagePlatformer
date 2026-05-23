@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34281dc44fae46a4ea51076288c2907c, type: 3}
   m_Name: StoneTile
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableTile
-  baseSprite: {fileID: 0}
-  sprites: []
-  activations: []
+  baseSprite: {fileID: 3781640133553954864, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
+  sprites:
+  - {fileID: 7976304026602543088, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
+  activations:
+  - glow

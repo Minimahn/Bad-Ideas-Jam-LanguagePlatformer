@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         
 
         // Jump Logic
-        if (IsCoyoteGrounded() && inputHandler.JumpTriggered && !_hasJumped && rigidBody.linearVelocityY < 0.1)
+        if (IsCoyoteGrounded() && inputHandler.JumpTriggered && !_hasJumped && rigidBody.linearVelocityY < 0.05f)
         {
             rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocityX, 0);
             rigidBody.AddForceY(jumpForce, ForceMode2D.Impulse);
@@ -100,13 +100,13 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded()) // have player fall
         {
             fallAcceleration = 1f;
-            rigidBody.AddForceY(-4f, ForceMode2D.Force);
+            rigidBody.AddForceY(-6f, ForceMode2D.Force);
             slowGliding = false;
         }
         else
         {
-            rigidBody.AddForceY(-4f * fallAcceleration, ForceMode2D.Impulse);
-            fallAcceleration += 0.02f * Time.deltaTime;
+            rigidBody.AddForceY(-6f * fallAcceleration, ForceMode2D.Impulse);
+            fallAcceleration += 0.1f * Time.deltaTime;
         }
 
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)

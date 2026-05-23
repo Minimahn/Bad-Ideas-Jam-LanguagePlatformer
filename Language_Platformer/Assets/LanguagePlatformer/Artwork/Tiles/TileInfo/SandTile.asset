@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd2b78c55effd447bcb0fcf0b14d1e7, type: 3}
   m_Name: SandTile
   m_EditorClassIdentifier: Assembly-CSharp::BasicTileData
-  tile: {fileID: 0}
-  defaultSprite: {fileID: 0}
-  glowSprite: {fileID: 0}
+  tile: {fileID: 11400000, guid: c95462f140a091444ab3db5c281443cc, type: 2}
   terrainSpeed: 0
   friction: 0
   destructible: 0

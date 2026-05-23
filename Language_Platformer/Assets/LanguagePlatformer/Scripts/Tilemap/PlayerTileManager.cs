@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PlayerTileManager : MonoBehaviour
+public class TileManager : MonoBehaviour
 {
     
     public BasicTileData[] tileDatas;
@@ -35,7 +35,7 @@ public class PlayerTileManager : MonoBehaviour
 
     private void baseTileCheck(Vector3Int pos, ScriptableTile tile)
     {
-        //
+        
         if (baseTileDatas.ContainsKey(tile)) //easiest to change tile with another
         {
             tile.SetSprite("glow", physicalMap, pos); //temporary test

@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd2b78c55effd447bcb0fcf0b14d1e7, type: 3}
   m_Name: DirtTile
   m_EditorClassIdentifier: Assembly-CSharp::BasicTileData
-  tile: {fileID: 11400000, guid: 9da4f0fa600a43d4690da7c523ca77bd, type: 2}
-  defaultSprite: {fileID: 785361590745396547, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
-  glowSprite: {fileID: 5513797200519509153, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
+  tile: {fileID: 11400000, guid: a29f9661682707641b939109017d1c06, type: 2}
   terrainSpeed: 0
   friction: 0
   destructible: 0
