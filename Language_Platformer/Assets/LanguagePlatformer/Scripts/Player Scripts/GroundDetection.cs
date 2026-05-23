@@ -50,11 +50,10 @@ public class GroundDetection : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print("triggering");
+       
         int layerIndex = collision.transform.gameObject.layer;
         if (LayerMask.LayerToName(layerIndex) == "Ground")
         {
-            print("touching ground");
             groundAdjacents++; //add to count of ground colliders feet are on
             updateGrounded();
         } 
