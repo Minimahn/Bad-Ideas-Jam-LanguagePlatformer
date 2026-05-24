@@ -404,6 +404,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773909159c0d5174a86cfc9fb185aff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundDetection
+--- !u!1 &6004114878049119223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7477505881918855759}
+  m_Layer: 0
+  m_Name: SSP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7477505881918855759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004114878049119223}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: -0.175, y: 0, z: 0}
+  m_LocalScale: {x: 0.20668994, y: 0.15051147, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7687559278579434663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6021346043393533160
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7687559278579434663}
   - component: {fileID: 2760063169166773585}
+  - component: {fileID: 2926754573423310996}
   m_Layer: 0
   m_Name: Wand
   m_TagString: Untagged
@@ -429,13 +461,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6021346043393533160}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 4.838165, y: 6.6440115, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7477505881918855759}
   m_Father: {fileID: 1632313521143659898}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!212 &2760063169166773585
 SpriteRenderer:
   serializedVersion: 2
@@ -483,7 +516,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 542294140767334457, guid: b74d425fa1d112c4fa2f69f54d5dd8f8, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -495,3 +528,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
+--- !u!114 &2926754573423310996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021346043393533160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d853c1b74a64224db547a40ee0344b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WandPivotCode
+  minDistance: 1
+  maxDistance: 7
+  followSpeed: 10
