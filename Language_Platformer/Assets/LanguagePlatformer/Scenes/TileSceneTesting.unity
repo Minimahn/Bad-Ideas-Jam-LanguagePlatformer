@@ -461,6 +461,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 7382358456821730281, guid: 7c70e6cb6f385f247beeee5d733d296f, type: 3}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellName
+      value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellActivated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 626291668}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PureFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VerbalCasting, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4249,6 +4293,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 543976216679942864, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
   m_PrefabInstance: {fileID: 566207508}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &626291668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+  m_PrefabInstance: {fileID: 566207508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626291662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097011386832f8947bbdf157ff9848a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VerbalCasting
 --- !u!1 &631793923
 GameObject:
   m_ObjectHideFlags: 0
