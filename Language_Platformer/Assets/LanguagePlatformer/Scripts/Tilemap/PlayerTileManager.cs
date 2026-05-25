@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileManager : MonoBehaviour
+public class PlayerTileManager : MonoBehaviour
 {
     
     public BasicTileData[] tileDatas;
     public GameObject plr;
-    public Tilemap physicalMap;
+    private Tilemap physicalMap;
+    private TileController tileController;
     private Dictionary<ScriptableTile, BasicTileData> baseTileDatas;
 
 
@@ -21,25 +22,53 @@ public class TileManager : MonoBehaviour
             baseTileDatas.Add(tileData.tile, tileData);
         }
 
+        tileController = GetComponent<TileController>();
+        physicalMap = transform.Find("Physical").GetComponent<Tilemap>();
     }
 
 
-    void Update() //get player position & block they are standing on for this test
+    void Update() //check nearby tiles to player
     {
-        Vector3Int cellPos = physicalMap.WorldToCell(new Vector3(plr.transform.position.x, plr.transform.position.y - 1.5f, plr.transform.position.z));
+        List<Vector3Int> closeTilePositions = new List<Vector3Int>();
+        BoundsInt bounds = new BoundsInt();
+        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 4, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
+        new Vector3Int((int)plr.transform.position.x + 4, (int)plr.transform.position.y + 4, (int)plr.transform.position.z + 1));
         
-        TileBase tile = physicalMap.GetTile(cellPos);
-        if (tile != null)
-            baseTileCheck(cellPos, (ScriptableTile)tile);
-    }
-
-    private void baseTileCheck(Vector3Int pos, ScriptableTile tile)
-    {
-        
-        if (baseTileDatas.ContainsKey(tile)) //easiest to change tile with another
+        foreach (var pt in bounds.allPositionsWithin)
         {
-            tile.SetSprite("glow", physicalMap, pos); //temporary test
-        }   
+            closeTilePositions.Add(pt); //list of Vector3Int
+        }
+
+        if (closeTilePositions != null)
+            baseTileCheck(closeTilePositions);
+    }
+
+    private void baseTileCheck(List<Vector3Int> positions)
+    {
+        List<Vector3Int> nearbyBaseTiles = new List<Vector3Int>();
+        List<Vector3Int> glowingTiles = new List<Vector3Int>();
+
+        for (int i = 0; i < positions.Count; i++)
+        {
+            if (physicalMap.GetTile(positions[i]) == null)
+                break;
+
+            if (baseTileDatas.ContainsKey((ScriptableTile)physicalMap.GetTile(positions[i])))
+                nearbyBaseTiles.Add(positions[i]);
+        }
+
+        foreach (Vector3Int tilepos in nearbyBaseTiles)
+        {
+            print("Four");
+            ScriptableTile tile  = (ScriptableTile)physicalMap.GetTile(tilepos);
+            if (baseTileDatas[tile].glowable && plr.GetComponent<PlayerVariables>().getGlow())
+            {
+                tile.SetSprite("glow", physicalMap, tilepos);
+                glowingTiles.Add(tilepos);
+            }
+        }
+ 
+        tileController.AddToGlow(glowingTiles);
     }
 
 }

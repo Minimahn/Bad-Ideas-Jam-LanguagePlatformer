@@ -18,3 +18,4 @@ MonoBehaviour:
   destructible: 0
   flammable: 0
   permeable: 0
+  glowable: 1

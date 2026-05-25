@@ -15,6 +15,7 @@ public class ScriptableTile : TileBase, ISerializationCallbackReceiver
     public Sprite[] sprites;
     public string[] activations;
     private string currentActivation = "";
+    private Vector3 position;
 
 
     //Unity Editor only code... thank you temporary vibe code! shocker it doesnt work right, fix tmrw!
@@ -74,8 +75,10 @@ public class ScriptableTile : TileBase, ISerializationCallbackReceiver
         }
         else
         {
-            tileData.sprite = baseSprite; 
+            tileData.sprite = baseSprite;
         }
+    
+
     }
 
     
