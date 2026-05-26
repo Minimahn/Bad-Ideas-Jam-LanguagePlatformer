@@ -11,6 +11,7 @@ public class PlayerVariables : MonoBehaviour
     private float jumpPower = 5f;
     //BOOL STATES
     private bool invulnerable = false;
+    private bool glowActive = true;
     // ... etc ... 
 
     public void adjustHearts(int newHearts)
@@ -52,6 +53,10 @@ public class PlayerVariables : MonoBehaviour
     public float getJumpPower()
     {
         return jumpPower;
+    }
+    public bool getGlow()
+    {
+        return glowActive;
     }
     
 }
