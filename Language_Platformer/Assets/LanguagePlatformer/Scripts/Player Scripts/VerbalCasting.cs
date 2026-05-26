@@ -39,7 +39,11 @@ public class VerbalCasting : MonoBehaviour
         // searches for a spell using a lamda expression to specifically
         // compare the names of the spells to the args text
         // (which is what the player says) then using the function
-        spells.Find(s => s.spellName == args.text).spellFunction.Invoke();
+        Spell holder = spells.Find(s => s.spellName == args.text);
+        if (holder.spellActivated)
+        {
+            holder.spellFunction.Invoke();
+        }
         // idk why but I felt like I should of explained this one
     }
 
@@ -67,6 +71,12 @@ public class VerbalCasting : MonoBehaviour
     {
         spells.Add(new Spell(_spellName, _spellFunction, _spellActivated));
         recognizerReset();
+    }
+
+    public void DeleteSpell(string _spellName)
+    {
+        Spell holder = spells.Find(s => s.spellName == _spellName);
+        spells.Remove(holder);
     }
 
     [Header("Spells and their stuffs")]
