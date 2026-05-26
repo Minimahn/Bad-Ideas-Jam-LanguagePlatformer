@@ -505,6 +505,10 @@ PrefabInstance:
       propertyPath: spells.Array.data[0].spellFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6118561211137707463, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6948231904289839872, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
       propertyPath: jumpForce
       value: 100
