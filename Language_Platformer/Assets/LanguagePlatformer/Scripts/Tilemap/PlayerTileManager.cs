@@ -22,6 +22,10 @@ public class PlayerTileManager : MonoBehaviour
             baseTileDatas.Add(tileData.tile, tileData);
         }
 
+    }
+
+    void Start()
+    {
         tileController = GetComponent<TileController>();
         physicalMap = transform.Find("Physical").GetComponent<Tilemap>();
     }
@@ -50,11 +54,12 @@ public class PlayerTileManager : MonoBehaviour
 
         for (int i = 0; i < positions.Count; i++)
         {
-            if (physicalMap.GetTile(positions[i]) == null)
-                break;
-
-            if (baseTileDatas.ContainsKey((ScriptableTile)physicalMap.GetTile(positions[i])))
-                nearbyBaseTiles.Add(positions[i]);
+            if (physicalMap.GetTile(positions[i]) != null)
+            {
+                ScriptableTile tile = (ScriptableTile)physicalMap.GetTile(positions[i]);
+                if (baseTileDatas.ContainsKey(tile))
+                    nearbyBaseTiles.Add(positions[i]);
+            }
         }
 
         foreach (Vector3Int tilepos in nearbyBaseTiles)

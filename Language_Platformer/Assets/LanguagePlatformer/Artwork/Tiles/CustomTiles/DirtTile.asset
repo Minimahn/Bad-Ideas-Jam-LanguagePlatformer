@@ -15,5 +15,7 @@ MonoBehaviour:
   baseSprite: {fileID: 785361590745396547, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
   sprites:
   - {fileID: 5513797200519509153, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
+  - {fileID: 785361590745396547, guid: d5d60e35b4495164a817f25e70271b18, type: 3}
   activations:
   - glow
+  - base
