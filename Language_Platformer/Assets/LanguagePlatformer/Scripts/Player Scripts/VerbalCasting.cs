@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,19 +18,22 @@ public class VerbalCasting : MonoBehaviour
         public UnityEvent spellFunction;
         public bool spellActivated;
         // public int spellCost;
+
+        public Spell(string _spellName, UnityEvent _spellFunction, bool _spellActivated)
+        {
+            spellName = _spellName;
+            spellFunction = _spellFunction;
+            spellActivated = _spellActivated;
+        }
     }
 
     [SerializeField] private List<Spell> spells;
 
     void Start()
     {
-        // commands
-        string[] spellNames = spells.Select(s => s.spellName).ToArray();
-        // balls
-        recognizer = new KeywordRecognizer(spellNames, ConfidenceLevel.Low);
-        recognizer.OnPhraseRecognized += OnPhraseRecognized;
-        recognizer.Start();
+        recognizerReset();
     }
+
     void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         // searches for a spell using a lamda expression to specifically
@@ -37,6 +41,32 @@ public class VerbalCasting : MonoBehaviour
         // (which is what the player says) then using the function
         spells.Find(s => s.spellName == args.text).spellFunction.Invoke();
         // idk why but I felt like I should of explained this one
+    }
+
+    private void recognizerReset()
+    {
+        if (recognizer != null)
+        {
+            recognizer.OnPhraseRecognized -= OnPhraseRecognized;
+            recognizer.Stop();
+            recognizer.Dispose();
+        }
+        string[] spellNames = spells.Select(s => s.spellName).ToArray();
+        recognizer = new KeywordRecognizer(spellNames, ConfidenceLevel.Low);
+        recognizer.OnPhraseRecognized += OnPhraseRecognized;
+        recognizer.Start();
+    }
+
+    public void AddSpell(Spell spell)
+    {
+        spells.Add(spell);
+        recognizerReset();
+    }
+
+    public void AddSpell(string _spellName, UnityEvent _spellFunction, bool _spellActivated)
+    {
+        spells.Add(new Spell(_spellName, _spellFunction, _spellActivated));
+        recognizerReset();
     }
 
     [Header("Spells and their stuffs")]
