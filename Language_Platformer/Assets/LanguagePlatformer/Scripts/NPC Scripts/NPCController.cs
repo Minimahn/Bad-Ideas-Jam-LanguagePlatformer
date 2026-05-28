@@ -54,8 +54,10 @@ public class NPCController : MonoBehaviour
             if (physical.GetTile(tilepos) == null)
             {
                 if ((patrolDirection > 0 && tilepos.x > transform.position.x) || (patrolDirection < 0 && tilepos.x < transform.position.x))
+                {
                     patrolDirection = -patrolDirection; // 1 to -1 to --1, etc. left/right
                     break;
+                }
             }
         }
         rigidbody.linearVelocity = new Vector2(patrolDirection * patrolSpeed, rigidbody.linearVelocity.y);

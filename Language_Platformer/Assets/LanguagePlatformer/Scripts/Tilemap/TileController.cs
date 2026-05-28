@@ -74,8 +74,8 @@ public class TileController : MonoBehaviour
     {
         List<Vector3Int> tiles = new List<Vector3Int>();
         BoundsInt bounds = new BoundsInt();
-        bounds.SetMinMax(new Vector3Int((int)(pos.x - dist), (int)pos.y, (int)pos.z),
-        new Vector3Int((int)(pos.x + dist), (int)(pos.y + 1), (int)pos.z + 1));
+        bounds.SetMinMax(new Vector3Int((int)(pos.x - dist), (int)(pos.y - 1), (int)pos.z),
+        new Vector3Int((int)(pos.x + dist), (int)(pos.y), (int)pos.z + 1));
 
         foreach (var pt in bounds.allPositionsWithin)
         {
