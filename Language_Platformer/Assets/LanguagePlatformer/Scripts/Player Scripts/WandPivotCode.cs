@@ -9,8 +9,8 @@ public class WandPivotCode : MonoBehaviour
     Camera cam;
 
     [Header("Modifiable Data")]
-    [SerializeField] private float minDistance = 1.0f;
-    [SerializeField] private float maxDistance = 3.0f;
+    [SerializeField] private float minDistance = 0.5f;
+    [SerializeField] private float maxDistance = 1.5f;
     [SerializeField] private float followSpeed = 10.0f;
 
     void Start()

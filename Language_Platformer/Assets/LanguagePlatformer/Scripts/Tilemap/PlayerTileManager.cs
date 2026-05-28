@@ -35,8 +35,8 @@ public class PlayerTileManager : MonoBehaviour
     {
         List<Vector3Int> closeTilePositions = new List<Vector3Int>();
         BoundsInt bounds = new BoundsInt();
-        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 4, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
-        new Vector3Int((int)plr.transform.position.x + 4, (int)plr.transform.position.y + 4, (int)plr.transform.position.z + 1));
+        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 3, (int)plr.transform.position.z),
+        new Vector3Int((int)plr.transform.position.x + 3, (int)plr.transform.position.y + 3, (int)plr.transform.position.z + 1));
         
         foreach (var pt in bounds.allPositionsWithin)
         {
