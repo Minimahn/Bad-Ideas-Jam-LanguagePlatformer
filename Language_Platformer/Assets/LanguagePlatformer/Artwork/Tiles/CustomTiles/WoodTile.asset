@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34281dc44fae46a4ea51076288c2907c, type: 3}
+  m_Name: WoodTile
+  m_EditorClassIdentifier: Assembly-CSharp::ScriptableTile
+  baseSprite: {fileID: -6416675001286302718, guid: aa2a5af6f8dc5ad4e9ba89d7344c035f, type: 3}
+  sprites:
+  - {fileID: -6416675001286302718, guid: aa2a5af6f8dc5ad4e9ba89d7344c035f, type: 3}
+  - {fileID: 1757614541233463244, guid: aa2a5af6f8dc5ad4e9ba89d7344c035f, type: 3}
+  - {fileID: 1129207147045458720, guid: aa2a5af6f8dc5ad4e9ba89d7344c035f, type: 3}
+  - {fileID: -5182014215691471747, guid: aa2a5af6f8dc5ad4e9ba89d7344c035f, type: 3}
+  - {fileID: 226859975853758947, guid: aa2a5af6f8dc5ad4e9ba89d7344c035f, type: 3}
+  activations:
+  - base
+  - glow
+  - burn
+  - burn2
+  - burn3
