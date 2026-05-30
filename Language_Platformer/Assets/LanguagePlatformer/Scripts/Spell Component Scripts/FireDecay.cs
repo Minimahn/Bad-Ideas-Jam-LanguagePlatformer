@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MoveForwards : MonoBehaviour
+public class FireDecay : MonoBehaviour
 {
     [SerializeField] float decayTime;
     [SerializeField] float speed;
@@ -9,15 +9,24 @@ public class MoveForwards : MonoBehaviour
 
     private float timeExisting = 0;
 
-    // Update is called once per frame
+    void Start()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
     void Update()
     {
-        if (timeExisting >= decayTime)
+        if (timeExisting >= decayTime && !GetComponent<ParticleSystem>().isStopped)
         {
+            GetComponent<ParticleSystem>().Stop();
             onDestroy.Invoke();
+        } 
+        
+        if (timeExisting >= (decayTime + 5))
+        {
             Destroy(gameObject);
         }
-
+        
         timeExisting += Time.deltaTime;
 
         transform.position += transform.right * speed * Time.deltaTime;
