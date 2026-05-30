@@ -1,4 +1,7 @@
 
+using System.Collections.Generic;
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,6 +19,12 @@ public class PlayerMovement : MonoBehaviour
     // Secret Variables oooh
     private bool _canJump = false;
     private bool _hasJumped = false;
+    private bool _grounded = false;
+    private bool _coyoteGrounded = false;
+    private bool runningCor = false;
+    private int _groundHits = 0;
+    private static float GROUND_TRIGGER_DELAY = 0.15f;
+
     [SerializeField] private float _currSpeed = 0.0f;
     private float SLOW_MULTIPLIER = 0.67f;
     private float FAST_MULTIPLIER = 1.5f;
@@ -23,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Collider2D col;
-    private Collider2D feetCol;
     private PlayerInputHandler inputHandler;
     private Animator animator;
 
@@ -32,24 +40,52 @@ public class PlayerMovement : MonoBehaviour
         _currSpeed = walkSpeed;
         rigidBody = GetComponent<Rigidbody2D>();    // Rigidbody2D > PlayerController for 2D imo so I'm sticking with that
         col = GetComponent<Collider2D>();
-        feetCol = transform.Find("FeetBox").GetComponent<Collider2D>();
         inputHandler = PlayerInputHandler.Instance; // The InputHandler Instance
         animator = GetComponent<Animator>();
     }
 
-    bool IsGrounded()
-    {
-        return feetCol.transform.GetComponent<GroundDetection>().getGroundStatus();
-    }
-    bool IsCoyoteGrounded()
-    {
-        return feetCol.transform.GetComponent<GroundDetection>().getJumpStatus();
-    }
 
+    IEnumerator offGround()
+    {
+        float incrementer = 0f;
+        while (incrementer < GROUND_TRIGGER_DELAY)
+        {
+            if (_groundHits > 0)
+            {
+                runningCor = false;
+                yield break;
+            }
+            incrementer += Time.deltaTime;
+            yield return null;
+        }
+            _coyoteGrounded = false;
+            runningCor = false;
+    }
+    private void groundCheck()
+    {
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+        Vector2 size = new Vector2(0.75f, 1f); //hard-coded
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(LayerMask.GetMask("Ground"));
+        List<RaycastHit2D> list = new List<RaycastHit2D>(); 
+        _groundHits = Physics2D.BoxCast(pos, size, 0, -transform.up, filter, list, 0.5f);
+        if (_groundHits > 0)
+        {
+            _grounded = true;
+            _coyoteGrounded = true;
+        } else if (_groundHits <= 0 && !runningCor)
+        {
+            runningCor = true;
+            _grounded = false;
+            StartCoroutine(offGround());
+        }
+    }
 
 
     private void Update()
     {
+        groundCheck();
+        print("Grounded:" + _grounded + " - CoyoteGrounded: " + _coyoteGrounded);
         // work towards making _currspeed sprint speed
         if (inputHandler.SprintValue > 0)
             _currSpeed = Mathf.Clamp(_currSpeed + acceleration * Time.deltaTime, -6.7f, (walkSpeed * FAST_MULTIPLIER));
@@ -57,13 +93,12 @@ public class PlayerMovement : MonoBehaviour
             _currSpeed = Mathf.Clamp(_currSpeed - braking * Time.deltaTime, walkSpeed, (walkSpeed * FAST_MULTIPLIER));
 
         
-
-        if (inputHandler.MoveInput != Vector2.zero && IsCoyoteGrounded()) 
+        if (inputHandler.MoveInput != Vector2.zero && _coyoteGrounded) 
         {
             rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
             changeAnimState(inputHandler.MoveInput.x);
         } 
-        else if (inputHandler.MoveInput != Vector2.zero && !IsCoyoteGrounded())
+        else if (inputHandler.MoveInput != Vector2.zero && !_coyoteGrounded)
         {
             //print("RB: " + rigidBody.linearVelocity.x + " <-> Input: " + inputHandler.MoveInput.x);
             if (rigidBody.linearVelocityX == 0 || slowGliding)
@@ -84,29 +119,29 @@ public class PlayerMovement : MonoBehaviour
         
 
         // Jump Logic
-        if (IsCoyoteGrounded() && inputHandler.JumpTriggered && !_hasJumped && rigidBody.linearVelocityY < 0.02f)
+        if (_coyoteGrounded && inputHandler.JumpTriggered && !_hasJumped && rigidBody.linearVelocityY < 0.02f)
         {
             rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocityX, 0);
             rigidBody.AddForceY(jumpForce, ForceMode2D.Impulse);
             _hasJumped = true;
         }
 
-        if (IsCoyoteGrounded() && !inputHandler.JumpTriggered) // ???
+        if (_coyoteGrounded && !inputHandler.JumpTriggered) // ???
             _hasJumped = false;
     }
 
     private void FixedUpdate()
     {
-        if (IsGrounded()) // have player fall
+        if (_grounded) // have player fall
         {
             fallAcceleration = 1f;
-            rigidBody.AddForceY(-200f, ForceMode2D.Force);
+            rigidBody.AddForceY(-220f, ForceMode2D.Force);
             slowGliding = false;
         }
         else
         {
-            rigidBody.AddForceY(-200f * fallAcceleration, ForceMode2D.Force);
-            fallAcceleration += 0.1f * Time.deltaTime;
+            rigidBody.AddForceY(-220f * fallAcceleration, ForceMode2D.Force);
+            fallAcceleration += 0.05f;
         }
 
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
@@ -117,13 +152,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void changeAnimState(float dir)
     {
-        if (dir < 0 && IsGrounded())
+        if (dir < 0 && _grounded)
             animator.Play("WalkLeft");
-        else if (dir > 0 && IsGrounded())
+        else if (dir > 0 && _grounded)
             animator.Play("WalkRight");
-        else if (dir < 0 && !IsGrounded())
+        else if (dir < 0 && !_grounded)
             animator.Play("JumpLeft");
-        else if (dir > 0 && !IsGrounded())
+        else if (dir > 0 && !_grounded)
             animator.Play("JumpRight");
 
     }

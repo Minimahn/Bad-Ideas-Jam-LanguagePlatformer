@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Unity.Mathematics;
+using NUnit.Framework;
 
 public class PlayerTileManager : MonoBehaviour
 {
     
     public BasicTileData[] tileDatas;
     public GameObject plr;
-    private Tilemap physicalMap;
+    private Tilemap physical;
+    private Tilemap special;
+    private Tilemap lighting;
     private TileController tileController;
     private Dictionary<ScriptableTile, BasicTileData> baseTileDatas;
 
@@ -27,7 +31,9 @@ public class PlayerTileManager : MonoBehaviour
     void Start()
     {
         tileController = GetComponent<TileController>();
-        physicalMap = transform.Find("Physical").GetComponent<Tilemap>();
+        physical = transform.Find("Physical").GetComponent<Tilemap>();
+        special = transform.Find("Special").GetComponent<Tilemap>();
+        lighting = transform.Find("Lighting").GetComponent<Tilemap>();
     }
 
 
@@ -35,12 +41,19 @@ public class PlayerTileManager : MonoBehaviour
     {
         List<Vector3Int> closeTilePositions = new List<Vector3Int>();
         BoundsInt bounds = new BoundsInt();
-        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 4, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
-        new Vector3Int((int)plr.transform.position.x + 4, (int)plr.transform.position.y + 4, (int)plr.transform.position.z + 1));
+        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
+        new Vector3Int((int)plr.transform.position.x + 2, (int)plr.transform.position.y + 2, (int)plr.transform.position.z + 1));
         
         foreach (var pt in bounds.allPositionsWithin)
         {
-            closeTilePositions.Add(pt); //list of Vector3Int
+            Vector3Int closestPt = new Vector3Int(pt.x, pt.y, pt.z);
+            if (closestPt.x < plr.transform.position.x)
+                closestPt.x += 1;
+            if (closestPt.y < plr.transform.position.y)
+                closestPt.y += 1;
+            float distToPlr = math.abs((closestPt - plr.transform.position).magnitude);
+            if (distToPlr < 3.1f)
+                closeTilePositions.Add(pt); //list of Vector3Int
         }
 
         if (closeTilePositions != null)
@@ -49,30 +62,70 @@ public class PlayerTileManager : MonoBehaviour
 
     private void baseTileCheck(List<Vector3Int> positions)
     {
-        List<Vector3Int> nearbyBaseTiles = new List<Vector3Int>();
+        List<Vector3Int> nearbyTiles = new List<Vector3Int>();
         List<Vector3Int> glowingTiles = new List<Vector3Int>();
+        ScriptableTile tile = new ScriptableTile();
+        bool priorNear = false;
+        bool priorGlow = false;
 
         for (int i = 0; i < positions.Count; i++)
         {
-            if (physicalMap.GetTile(positions[i]) != null)
+            if (physical.GetTile(positions[i]) != null)
             {
-                ScriptableTile tile = (ScriptableTile)physicalMap.GetTile(positions[i]);
-                if (baseTileDatas.ContainsKey(tile))
-                    nearbyBaseTiles.Add(positions[i]);
+                tile = (ScriptableTile)physical.GetTile(positions[i]);
+                if (baseTileDatas.ContainsKey(tile)) //might be removable if all tiles fall into place
+                {    
+                    priorNear = true;
+                    nearbyTiles.Add(positions[i]);
+                    if (baseTileDatas[tile].glowable && plr.GetComponent<PlayerVariables>().getGlow())
+                    {
+                        priorGlow = true;
+                        glowingTiles.Add(positions[i]);
+                    }
+                }
             }
-        }
 
-        foreach (Vector3Int tilepos in nearbyBaseTiles)
-        {
-            print("Four");
-            ScriptableTile tile  = (ScriptableTile)physicalMap.GetTile(tilepos);
-            if (baseTileDatas[tile].glowable && plr.GetComponent<PlayerVariables>().getGlow())
+            if (special.GetTile(positions[i]) != null)
             {
-                tile.SetSprite("glow", physicalMap, tilepos);
-                glowingTiles.Add(tilepos);
+                tile = (ScriptableTile)special.GetTile(positions[i]);
+                if (baseTileDatas.ContainsKey(tile))
+                {
+                    if (!priorNear)
+                    {
+                        priorNear = true;
+                        nearbyTiles.Add(positions[i]);
+                    }
+                    if (baseTileDatas[tile].glowable && plr.GetComponent<PlayerVariables> ().getGlow() && !priorGlow)
+                    {
+                        priorGlow = true;
+                        glowingTiles.Add(positions[i]);
+                    }
+                }
             }
+
+            if (lighting.GetTile(positions[i]) != null)
+            {
+                tile = (ScriptableTile)lighting.GetTile(positions[i]);
+                if (baseTileDatas.ContainsKey(tile))
+                {
+                    if (!priorNear)
+                    {
+                        priorNear = true;
+                        nearbyTiles.Add(positions[i]);
+                    }
+                    if (baseTileDatas[tile].glowable && plr.GetComponent<PlayerVariables> ().getGlow() && !priorGlow)
+                    {
+                        priorGlow = true;
+                        glowingTiles.Add(positions[i]);
+                    }
+                }
+            }
+
+            priorNear = false;
+            priorGlow = false;
         }
  
+        
         tileController.AddToGlow(glowingTiles);
     }
 

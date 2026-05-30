@@ -10,6 +10,6 @@ public class BasicTileData : ScriptableObject
     public ScriptableTile tile;
 
     public float terrainSpeed, friction;
-    public bool destructible, flammable, permeable, glowable;
+    public bool destructible, flammable, freezable, permeable, glowable;
 
 }
