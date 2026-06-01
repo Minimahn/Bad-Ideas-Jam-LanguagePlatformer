@@ -471,7 +471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
       propertyPath: spells.Array.data[0].spellName
-      value: Fire
+      value: Scoop
       objectReference: {fileID: 0}
     - target: {fileID: 2395167822887808330, guid: 0744f59b9344c5e469f1d4c64ee96bb1, type: 3}
       propertyPath: spells.Array.data[0].spellActivated
@@ -8372,6 +8372,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 46808863787151857, guid: a176706c86b270542892a39c92e03eba, type: 3}
+      propertyPath: individualBurnTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7181989018944146928, guid: a176706c86b270542892a39c92e03eba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.2
