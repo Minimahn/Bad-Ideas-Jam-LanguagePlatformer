@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6747947643232263611}
   - component: {fileID: -5867950798949565391}
   - component: {fileID: 8010399969732509927}
+  - component: {fileID: -3914296133589176112}
   m_Layer: 0
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4892,3 +4893,15 @@ CapsuleCollider2D:
   m_Offset: {x: -0.01593493, y: 1.1274921}
   m_Size: {x: 3.6606803, y: 4.5850053}
   m_Direction: 0
+--- !u!114 &-3914296133589176112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851904828664815683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2977d8fbf5856d4d8c6195dff16e9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fire
