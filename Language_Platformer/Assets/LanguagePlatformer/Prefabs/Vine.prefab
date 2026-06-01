@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 4625968513965057399}
   - component: {fileID: 6719063968272357993}
   m_Layer: 0
-  m_Name: Rope
+  m_Name: Vine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
