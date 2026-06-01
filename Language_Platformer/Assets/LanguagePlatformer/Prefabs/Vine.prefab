@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3723468861702954172}
   - component: {fileID: 8343657993437989580}
   - component: {fileID: 6529460022135494424}
+  - component: {fileID: 736811626248977765}
   m_Layer: 0
   m_Name: Rope Segment 2
   m_TagString: Untagged
@@ -197,6 +198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+--- !u!114 &736811626248977765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693818101258917974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e4b48fe5c15c4fb06a66a38c4b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RopeIgnite
 --- !u!1 &894393048959537366
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +224,7 @@ GameObject:
   - component: {fileID: 8103403682697798555}
   - component: {fileID: 3076831355682829913}
   - component: {fileID: 3313069245063764851}
+  - component: {fileID: 935718698320600982}
   m_Layer: 0
   m_Name: Rope Segment 3
   m_TagString: Untagged
@@ -394,6 +408,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+--- !u!114 &935718698320600982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894393048959537366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e4b48fe5c15c4fb06a66a38c4b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RopeIgnite
 --- !u!1 &1273864614268243773
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4625968513965057399}
   - component: {fileID: 6719063968272357993}
+  - component: {fileID: 6960183524492694292}
   m_Layer: 0
   m_Name: Vine
   m_TagString: Untagged
@@ -460,6 +487,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6960183524492694292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273864614268243773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba9af1bc2ac0244d87aafcc5f5e9b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rope
+  individualBurnTime: 2
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  Smoke: {fileID: 1013883232849607783, guid: 84e7b0feb3a810649992168a4895ca48, type: 3}
 --- !u!1 &2993104154005557445
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +580,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.5, y: 0}
-  m_ConnectedAnchor: {x: -12.32, y: 3.44}
+  m_ConnectedAnchor: {x: -11.196449, y: 6.1688232}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -560,6 +604,7 @@ GameObject:
   - component: {fileID: 4126744920642939600}
   - component: {fileID: 6203009227820028192}
   - component: {fileID: 783264413645216308}
+  - component: {fileID: 4831466322696113501}
   m_Layer: 0
   m_Name: Rope Segment 5
   m_TagString: Untagged
@@ -743,6 +788,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+--- !u!114 &4831466322696113501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112180526289493868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e4b48fe5c15c4fb06a66a38c4b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RopeIgnite
 --- !u!1 &5842528522806991409
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,6 +814,7 @@ GameObject:
   - component: {fileID: 1610353072485717865}
   - component: {fileID: 8609035959926456704}
   - component: {fileID: 1693373829677698048}
+  - component: {fileID: 1082665562756264282}
   m_Layer: 0
   m_Name: Rope Segment 1
   m_TagString: Untagged
@@ -918,7 +976,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.00000012642145, y: 0.00000020724531}
-  m_ConnectedAnchor: {x: -0.00000023841852, y: -1.04216045e-14}
+  m_ConnectedAnchor: {x: -0, y: 0}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -940,6 +998,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+--- !u!114 &1082665562756264282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5842528522806991409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e4b48fe5c15c4fb06a66a38c4b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RopeIgnite
 --- !u!1 &7946743512672991783
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +1024,7 @@ GameObject:
   - component: {fileID: 4965321605520664401}
   - component: {fileID: 9075078124198475146}
   - component: {fileID: 6613393487965311312}
+  - component: {fileID: 7097864379122766185}
   m_Layer: 0
   m_Name: Rope Segment 6
   m_TagString: Untagged
@@ -1115,7 +1186,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.00000012642145, y: 0.00000020724531}
-  m_ConnectedAnchor: {x: 0.9999995, y: 0.000000043711367}
+  m_ConnectedAnchor: {x: 0.99999964, y: 0.000000043711374}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1137,6 +1208,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+--- !u!114 &7097864379122766185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946743512672991783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e4b48fe5c15c4fb06a66a38c4b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RopeIgnite
 --- !u!1 &9116383729795196868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1234,7 @@ GameObject:
   - component: {fileID: 1691632218444337856}
   - component: {fileID: 817307572607984748}
   - component: {fileID: 7583214483082289040}
+  - component: {fileID: 584284564280006212}
   m_Layer: 0
   m_Name: Rope Segment 4
   m_TagString: Untagged
@@ -1312,7 +1396,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.00000012642145, y: 0.00000020724531}
-  m_ConnectedAnchor: {x: 0.9999999, y: 0.00000004371138}
+  m_ConnectedAnchor: {x: 0.99999976, y: 0.000000043711378}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1334,3 +1418,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
+--- !u!114 &584284564280006212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9116383729795196868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e4b48fe5c15c4fb06a66a38c4b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RopeIgnite
