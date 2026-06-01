@@ -10,13 +10,15 @@ public class Rope : MonoBehaviour
 
     // Private Variables
     private GameObject[] ropeSegments;
-    [SerializeField] GameObject ropeStart;
-    [SerializeField] GameObject ropeEnd;
+    private GameObject anchorStart;
+    private GameObject anchorEnd;
     void Start()
     {
         ropeSegments = new GameObject[transform.childCount - 2];
-        ropeStart = transform.GetChild(0).gameObject;
-        ropeEnd = transform.GetChild(transform.childCount-1).gameObject;
+        anchorStart = transform.GetChild(0).gameObject;
+        anchorEnd = transform.GetChild(transform.childCount-1).gameObject;
+        if (anchorEnd.name.Contains("Rope"))
+            anchorEnd = null;
         for (int i = 1; i < transform.childCount - 1; i++)
         {
             ropeSegments[i-1] = transform.GetChild(i).gameObject;
@@ -31,10 +33,10 @@ public class Rope : MonoBehaviour
 
     public void Ignited(GameObject toBurnFrom)
     {
-        if (ropeSegments.Last<GameObject>() == toBurnFrom)
-            Destroy(ropeEnd);
+        if (ropeSegments.Last<GameObject>() == toBurnFrom && anchorEnd != null)
+            Destroy(anchorEnd);
         else if (ropeSegments.First<GameObject>() == toBurnFrom)
-            Destroy(ropeStart);
+            Destroy(anchorStart);
         
         Destroy(toBurnFrom);
     }
