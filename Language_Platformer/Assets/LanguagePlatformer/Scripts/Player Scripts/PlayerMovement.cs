@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
 
     // Secret Variables oooh
+    private int directionFacing = 0;
     private bool _canJump = false;
     private bool _hasJumped = false;
     private bool _grounded = false;
@@ -110,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.linearVelocity = new Vector2(inputHandler.MoveInput.x * _currSpeed, rigidBody.linearVelocityY);
             }
-            changeAnimState(inputHandler.MoveInput.x);
         }
         else
         {
@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_coyoteGrounded && !inputHandler.JumpTriggered) // ???
             _hasJumped = false;
+        changeAnimState(inputHandler.MoveInput.x);
     }
 
     private void FixedUpdate()
@@ -153,13 +154,32 @@ public class PlayerMovement : MonoBehaviour
     private void changeAnimState(float dir)
     {
         if (dir < 0 && _grounded)
+        {
             animator.Play("WalkLeft");
+            directionFacing = -1;
+        }
         else if (dir > 0 && _grounded)
+        {
             animator.Play("WalkRight");
+            directionFacing = 1;
+        }
         else if (dir < 0 && !_grounded)
+        {
             animator.Play("JumpLeft");
+            directionFacing = -1;
+        }
         else if (dir > 0 && !_grounded)
+        {
             animator.Play("JumpRight");
+            directionFacing = 1;
+        }
+        else if (dir < 0.1f && dir > -0.1f)
+        {
+            if (directionFacing > 0)
+                animator.Play("IdleRight");
+            else if (directionFacing < 0)
+                animator.Play("IdleLeft");
+        }
 
     }
 }

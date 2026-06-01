@@ -56,15 +56,14 @@ public class PlayerTileManager : MonoBehaviour
                 closeTilePositions.Add(pt); //list of Vector3Int
         }
 
-        if (closeTilePositions != null)
-            baseTileCheck(closeTilePositions);
+        baseTileCheck(closeTilePositions);
     }
 
     private void baseTileCheck(List<Vector3Int> positions)
     {
         List<Vector3Int> nearbyTiles = new List<Vector3Int>();
         List<Vector3Int> glowingTiles = new List<Vector3Int>();
-        ScriptableTile tile = new ScriptableTile();
+        ScriptableTile tile = ScriptableObject.CreateInstance<ScriptableTile>();
         bool priorNear = false;
         bool priorGlow = false;
 
