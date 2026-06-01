@@ -1072,9 +1072,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba9af1bc2ac0244d87aafcc5f5e9b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RopeIgnitable
-  individualBurnTime: 5
-  ropeStart: {fileID: 0}
-  ropeEnd: {fileID: 0}
+  individualBurnTime: 2
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  Smoke: {fileID: 1013883232849607783, guid: 84e7b0feb3a810649992168a4895ca48, type: 3}
 --- !u!1 &8474503419230432704
 GameObject:
   m_ObjectHideFlags: 0

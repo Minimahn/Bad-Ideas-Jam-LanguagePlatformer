@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.AdaptivePerformance;
+using UnityEngine.Events;
 
 public class RopeIgnite : MonoBehaviour
 {
     private Rope papaRope;
-    [SerializeField] private bool igniting = false;
+    private bool igniting = false;
     private void Start()
     {
         papaRope = gameObject.GetComponentInParent<Rope>();
@@ -16,7 +17,7 @@ public class RopeIgnite : MonoBehaviour
             SpriteRenderer holder = GetComponent<SpriteRenderer>();
             if (holder.color.r != 0.0f)
             {
-                holder.color = new Color(Mathf.Clamp(holder.color.r - (papaRope.individualBurnTime * Time.deltaTime), 0, 67), Mathf.Clamp(holder.color.g - (papaRope.individualBurnTime * Time.deltaTime), 0, 67), Mathf.Clamp(holder.color.b - (papaRope.individualBurnTime * Time.deltaTime), 0, 67), holder.color.a);
+                holder.color = new Color(Mathf.Clamp(holder.color.r - (1/papaRope.individualBurnTime * Time.deltaTime), 0, 67), Mathf.Clamp(holder.color.g - (1 / papaRope.individualBurnTime * Time.deltaTime), 0, 67), Mathf.Clamp(holder.color.b - (1 / papaRope.individualBurnTime * Time.deltaTime), 0, 67), holder.color.a);
                 print("Color = " + holder.color);
                 if (holder.color.r <= 0.5f)
                     papaRope.Ignited(gameObject);
@@ -40,5 +41,9 @@ public class RopeIgnite : MonoBehaviour
     public void Ignite()
     {
         igniting = true;
+    }
+    public void creationSlop()
+    {
+        Instantiate(papaRope.Smoke, transform.position, Quaternion.identity);
     }
 }
