@@ -4,9 +4,10 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
-    private InputAction moveAction, jumpAction, sprintAction;
+    private InputAction moveAction, jumpAction, interactAction, sprintAction;
     public Vector2 MoveInput { get; private set; }
     public bool JumpTriggered { get; private set; }
+    public bool InteractTriggered { get; private set;}
     public float SprintValue { get; private set; }
 
     public static PlayerInputHandler Instance { get; private set; }
@@ -26,6 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         moveAction = playerControls.FindActionMap("Player").FindAction("Move");
         jumpAction = playerControls.FindActionMap("Player").FindAction("Jump");
+        interactAction = playerControls.FindActionMap("Player").FindAction("Interact");
         sprintAction = playerControls.FindActionMap("Player").FindAction("Sprint");
 
         RegisterInputActions();
@@ -39,6 +41,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         jumpAction.performed += context => JumpTriggered = true;
         jumpAction.canceled += context => JumpTriggered = false;
+
+        interactAction.performed += context => InteractTriggered = true;
+        interactAction.canceled += context => InteractTriggered = false;
 
         sprintAction.performed += context => SprintValue = context.ReadValue<float>();
         sprintAction.canceled += context => SprintValue = 0.0f;

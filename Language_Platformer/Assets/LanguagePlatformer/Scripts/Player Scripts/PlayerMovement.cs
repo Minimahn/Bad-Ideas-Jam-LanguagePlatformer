@@ -25,10 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private float _fallAcc = 0f;
     private bool _canJump = false;
     private bool _hasJumped = false;
+    private bool _interacting = false;
     private bool _grounded = false;
     private bool _coyoteGrounded = false;
     private bool runningCor = false;
     private int _groundHits = 0;
+    private static float INTERACT_TRIGGER_DELAY = 0.5f;
     private static float GROUND_TRIGGER_DELAY = 0.15f;
 
     [SerializeField] private float _currSpeed = 0.0f;
@@ -40,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D col;
     private PlayerInputHandler inputHandler;
     private Animator animator;
+    private List<Interactable> inputReceivers;
 
     private void Start()
     {
@@ -48,9 +51,20 @@ public class PlayerMovement : MonoBehaviour
         col = GetComponent<Collider2D>();
         inputHandler = PlayerInputHandler.Instance; // The InputHandler Instance
         animator = GetComponent<Animator>();
+        inputReceivers = new List<Interactable>();
     }
 
-
+    IEnumerator interactOffset()
+    {
+        _interacting = true;
+        float incrementer = 0f;
+        while (incrementer < INTERACT_TRIGGER_DELAY)
+        {
+            incrementer += Time.deltaTime;
+            yield return null;
+        }
+        _interacting = false;
+    }
     IEnumerator offGround()
     {
         float incrementer = 0f;
@@ -133,6 +147,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (_coyoteGrounded && !inputHandler.JumpTriggered) // ???
             _hasJumped = false;
+
+        if (inputHandler.InteractTriggered && !_interacting)
+        {
+            StartCoroutine(interactOffset());
+            foreach (var comp in inputReceivers)
+            {
+                comp.Interact();
+            }
+        }
         changeAnimState(inputHandler.MoveInput.x);
     }
 
@@ -190,5 +213,14 @@ public class PlayerMovement : MonoBehaviour
                 animator.Play("IdleLeft");
         }
 
+    }
+
+    public void AddInput(Interactable comp)
+    {
+        inputReceivers.Add(comp);
+    }
+    public void RemoveInput(Interactable comp)
+    {
+        inputReceivers.Remove(comp);
     }
 }
