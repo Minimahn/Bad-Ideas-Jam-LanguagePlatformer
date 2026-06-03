@@ -113,9 +113,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   walkSpeed: 7
   braking: 5
-  acceleration: 5
+  acceleration: 1
   jumpForce: 130
-  fallAcceleration: 1
+  fallAcceleration: 0.05
+  gravity: 9.8
+  mass: 22.4
+  fallSpeedClamp: 440
+  clampDisabled: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -132,8 +136,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097011386832f8947bbdf157ff9848a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VerbalCasting
-  spells: []
-  fireball: {fileID: 0}
+  spells:
+  - spellName: Scoop
+    spellFunction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2395167822887808330}
+          m_TargetAssemblyTypeName: VerbalCasting, Assembly-CSharp
+          m_MethodName: PureFire
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    spellActivated: 1
+  fireball: {fileID: 8851904828664815683, guid: 3dc4e742a50fa144782688118020f0bb, type: 3}
 --- !u!50 &6118561211137707463
 Rigidbody2D:
   serializedVersion: 5
@@ -146,7 +167,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 22
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -159,7 +180,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &5579365847464673655
 CapsuleCollider2D:
