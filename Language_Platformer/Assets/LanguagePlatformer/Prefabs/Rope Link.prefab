@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2387660649378552398}
   - component: {fileID: 6319030579304073887}
   - component: {fileID: 4757093601237809454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rope Segment 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -155,8 +155,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -167,7 +167,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &2387660649378552398
 HingeJoint2D:
@@ -185,7 +185,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.9987505, y: -0.004569214}
+  m_ConnectedAnchor: {x: 0.99875146, y: -0.0045692525}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gravity
+  gravity: 9.8
 --- !u!114 &4757093601237809454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4274171719961141663}
   - component: {fileID: 6163749931127660275}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +290,7 @@ GameObject:
   - component: {fileID: 2919881788213781113}
   - component: {fileID: 453007810881593549}
   - component: {fileID: 3790353490993948714}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +355,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 1.0236145, y: -0.0032262057}
+  m_ConnectedAnchor: {x: 1.0236138, y: -0.003226151}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -379,7 +380,7 @@ GameObject:
   - component: {fileID: 1921591280864103811}
   - component: {fileID: 4373646729986939128}
   - component: {fileID: 7141268054046512395}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rope Segment 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +491,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -519,8 +520,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -531,7 +532,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &1921591280864103811
 HingeJoint2D:
@@ -549,7 +550,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.9980011, y: 0}
+  m_ConnectedAnchor: {x: 0.99800014, y: 0}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -571,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gravity
+  gravity: 9.8
 --- !u!114 &7141268054046512395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +600,7 @@ GameObject:
   - component: {fileID: 5081045420476569862}
   - component: {fileID: 9164593262995599957}
   - component: {fileID: 596353370316164930}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rope Segment 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +711,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -738,8 +740,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -750,7 +752,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &5081045420476569862
 HingeJoint2D:
@@ -768,7 +770,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.9932552, y: -0.0054528415}
+  m_ConnectedAnchor: {x: 0.9932546, y: -0.0054528913}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -790,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gravity
+  gravity: 9.8
 --- !u!114 &596353370316164930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +820,7 @@ GameObject:
   - component: {fileID: 7457401573275011717}
   - component: {fileID: 7709619636385007120}
   - component: {fileID: 295040842953964010}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rope Segment 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +931,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -957,8 +960,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -969,7 +972,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &7457401573275011717
 HingeJoint2D:
@@ -987,7 +990,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.9954914, y: 0.010432489}
+  m_ConnectedAnchor: {x: 0.99549264, y: 0.010432544}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1009,6 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gravity
+  gravity: 9.8
 --- !u!114 &295040842953964010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,7 +1035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7181989018944146928}
   - component: {fileID: 46808863787151857}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rope Link
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1052,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1, y: -0.37, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4274171719961141663}
@@ -1093,7 +1097,7 @@ GameObject:
   - component: {fileID: 8209954343574900494}
   - component: {fileID: 1605541796675285048}
   - component: {fileID: 2018399595721908533}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rope Segment 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1208,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1233,8 +1237,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1245,7 +1249,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &6735771900506541396
 HingeJoint2D:
@@ -1283,7 +1287,7 @@ DistanceJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 8596882632063520418}
+  m_ConnectedRigidBody: {fileID: 453007810881593549}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
@@ -1291,7 +1295,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 3.9809284
+  m_Distance: 15
   m_MaxDistanceOnly: 1
 --- !u!114 &1605541796675285048
 MonoBehaviour:
@@ -1305,6 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee6a272e30654c4c95c846a981c4c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gravity
+  gravity: 9.8
 --- !u!114 &2018399595721908533
 MonoBehaviour:
   m_ObjectHideFlags: 0

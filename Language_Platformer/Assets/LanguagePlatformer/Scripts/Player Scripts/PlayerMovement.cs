@@ -13,11 +13,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private float jumpForce = 5.0f;
     [SerializeField] private float fallAcceleration = 1f;
+    [SerializeField] private float gravity = 9.8f;
+    [SerializeField] private float mass = 22.4f;
+    [SerializeField] private float fallSpeedClamp = 440.0f;
+    [SerializeField] private bool clampDisabled = false;
     [Header("Ground Checking")]
     [SerializeField] public LayerMask groundLayer;
 
     // Secret Variables oooh
     private int directionFacing = 0;
+    private float _fallAcc = 0f;
     private bool _canJump = false;
     private bool _hasJumped = false;
     private bool _grounded = false;
@@ -133,18 +138,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float weight = mass * gravity;
         if (_grounded) // have player fall
         {
-            fallAcceleration = 1f;
-            rigidBody.AddForceY(-220f, ForceMode2D.Force);
+            _fallAcc = 1f;
+            rigidBody.AddForceY(-weight, ForceMode2D.Force);
             slowGliding = false;
         }
         else
         {
-            rigidBody.AddForceY(-220f * fallAcceleration, ForceMode2D.Force);
-            fallAcceleration += 0.05f;
-        }
+            if (clampDisabled)
+                rigidBody.AddForceY(-weight * _fallAcc, ForceMode2D.Force);
+            else
+                rigidBody.AddForceY(Mathf.Clamp(-weight * _fallAcc, -fallSpeedClamp, Mathf.Infinity), ForceMode2D.Force);
 
+            _fallAcc += fallAcceleration;
+        }
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
         {
             //rigidBody.linearVelocityY = rigidBody.linearVelocityY * 0.7f;
