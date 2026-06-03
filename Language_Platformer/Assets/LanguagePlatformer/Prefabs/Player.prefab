@@ -155,6 +155,7 @@ MonoBehaviour:
           m_CallState: 2
     spellActivated: 1
   fireball: {fileID: 8851904828664815683, guid: 3dc4e742a50fa144782688118020f0bb, type: 3}
+  lightball: {fileID: 0}
 --- !u!50 &6118561211137707463
 Rigidbody2D:
   serializedVersion: 5
@@ -290,8 +291,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6004114878049119223}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.175, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.17499998, y: 0, z: 0}
   m_LocalScale: {x: 0.20668994, y: 0.15051147, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

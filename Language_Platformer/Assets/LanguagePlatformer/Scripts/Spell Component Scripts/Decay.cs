@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FireDecay : MonoBehaviour
+public class Decay : MonoBehaviour
 {
     [SerializeField] float decayTime;
     [SerializeField] float speed;
+    [SerializeField] float speedDecay = 0.0f;
     [SerializeField] UnityEvent onDestroy;
+    [SerializeField] bool identityRotation = false;
 
     private float timeExisting = 0;
 
     void Start()
     {
-        transform.rotation = Quaternion.identity;
+        if (identityRotation)
+            transform.rotation = Quaternion.identity;
     }
 
     void Update()
@@ -29,6 +32,7 @@ public class FireDecay : MonoBehaviour
         
         timeExisting += Time.deltaTime;
 
-        transform.position += transform.right * speed * Time.deltaTime;
+        transform.position += transform.right * -speed * Time.deltaTime;
+        speed = Mathf.Clamp(speed - (speedDecay * Time.deltaTime), 0, Mathf.Infinity);
     }
 }

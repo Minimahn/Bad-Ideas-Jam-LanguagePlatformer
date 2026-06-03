@@ -82,18 +82,17 @@ public class VerbalCasting : MonoBehaviour
     [Header("Spells and their stuffs")]
     [SerializeField] private GameObject fireball;
 
-    public void PureEarth()
-    {
-        print("Rocky goodness");
-    }
-    public void PureWater()
-    {
-        print("Too much water infact");
-    }
     public void PureFire()
     {
         GameObject castPos = GameObject.Find("SSP");
         Instantiate(fireball, castPos.transform.position, castPos.transform.rotation);
+    }
+
+    [SerializeField] private GameObject lightball;
+    public void Lighten()
+    {
+        GameObject castPos = GameObject.Find("SSP");
+        Instantiate(lightball, castPos.transform.position, castPos.transform.rotation);
     }
 
 }
