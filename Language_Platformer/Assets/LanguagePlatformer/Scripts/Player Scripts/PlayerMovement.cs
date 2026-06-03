@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         groundCheck();
-        print("Grounded:" + _grounded + " - CoyoteGrounded: " + _coyoteGrounded);
+        //print("Grounded:" + _grounded + " - CoyoteGrounded: " + _coyoteGrounded);
         // work towards making _currspeed sprint speed
         if (inputHandler.SprintValue > 0)
             _currSpeed = Mathf.Clamp(_currSpeed + acceleration * Time.deltaTime, -6.7f, (walkSpeed * FAST_MULTIPLIER));
