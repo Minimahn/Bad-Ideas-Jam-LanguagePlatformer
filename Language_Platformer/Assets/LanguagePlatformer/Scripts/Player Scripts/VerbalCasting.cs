@@ -92,7 +92,7 @@ public class VerbalCasting : MonoBehaviour
     public void Lighten()
     {
         GameObject castPos = GameObject.Find("SSP");
-        Instantiate(lightball, castPos.transform.position, castPos.transform.rotation);
+        Instantiate(lightball, new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z), transform.rotation, transform);
     }
 
 }

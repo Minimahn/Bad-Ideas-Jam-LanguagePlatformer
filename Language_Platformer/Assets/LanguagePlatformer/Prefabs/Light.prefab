@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5619338580999512938}
   - component: {fileID: 1914271820130999976}
   - component: {fileID: 1166052949771567974}
+  - component: {fileID: 8839803706671231445}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -170,7 +171,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -288,7 +289,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -665,11 +666,11 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 0
+    type: 10
     angle: 0
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0.5
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -752,7 +753,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.0001
+      value: 0.04
       mode: 0
       spread: 0
       speed:
@@ -810,19 +811,19 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
-      spread: 0
+      mode: 1
+      spread: 0.3
       speed:
         serializedVersion: 2
-        minMaxState: 0
-        scalar: 1
+        minMaxState: 1
+        scalar: 0.8
         minScalar: 1
         maxCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 1
+            value: 0.4256401
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -830,8 +831,17 @@ ParticleSystem:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
+            time: 0.44611672
+            value: 0.6717949
+            inSlope: 0.84473085
+            outSlope: 0.84473085
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
             time: 1
-            value: 1
+            value: 0.50769234
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -871,7 +881,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1309,9 +1319,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0.27450982}
-        key1: {r: 0.45697996, g: 0.46540874, b: 0.3351528, a: 0}
-        key2: {r: 1, g: 0.03459108, b: 0.08223288, a: 0}
+        key0: {r: 1, g: 1, b: 1, a: 0.27450982}
+        key1: {r: 0.65790486, g: 0.8039216, b: 0.47843137, a: 0}
+        key2: {r: 0.91823894, g: 0.7217352, b: 0.7016731, a: 0}
         key3: {r: 0.23918056, g: 1, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1335,7 +1345,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 2
         m_ColorSpace: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -4849,10 +4859,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02c23f6bb4cfa34484a0dd75b4c1c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Decay
-  decayTime: 6
-  speed: 3
+  decayTime: 30
+  speed: 0
   speedDecay: 1
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
   identityRotation: 0
+--- !u!114 &8839803706671231445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354073418109109283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b9b811aebcb3246879f8c4727f0969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Light
