@@ -9,7 +9,7 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-
+        Cursor.visible = false; //disable mouse cursor
     }
 
     void Update()

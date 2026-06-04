@@ -403,6 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d853c1b74a64224db547a40ee0344b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WandPivotCode
-  minDistance: 1
-  maxDistance: 5
+  minDistance: 0.8
+  maxDistance: 3
   followSpeed: 10

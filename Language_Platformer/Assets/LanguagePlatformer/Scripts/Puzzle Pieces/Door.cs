@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
-public class Door : Activator
+public class Door : Activator, Interactable
 {
     private bool opened = false;
     private bool activatorsReady = false;
@@ -10,6 +11,7 @@ public class Door : Activator
     public Sprite openedDoor;
     public Sprite closedDoor;
     private Collider2D coll;
+    private PlayerMovement movement;
 
     public List<Activator> activators;
 
@@ -53,6 +55,33 @@ public class Door : Activator
         spriteRenderer.sprite = openedDoor;
     }
 
+    
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        movement = other.transform.GetComponent<PlayerMovement>();
+        if (movement != null)
+        {
+            movement.AddInput(this);
+        }
+    }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        movement = other.transform.GetComponent<PlayerMovement>();
+        if (movement != null)
+        {
+            movement.RemoveInput(this);
+        }
+    }
+    
+
+    public void Interact()
+    {
+        string message = "You'll need to activate this door to get through, look for something nearby!";
+        if (!opened && movement != null)
+        {
+            movement.ShowText(message);
+        }
+    }
     override public bool GetActive()
     {
         return opened;

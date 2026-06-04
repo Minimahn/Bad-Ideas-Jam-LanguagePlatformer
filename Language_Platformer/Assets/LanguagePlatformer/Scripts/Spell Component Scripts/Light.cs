@@ -10,7 +10,7 @@ public class Light : MonoBehaviour
     private PlayerVariables playerVariables;
     private float xCenter, yCenter;
     private static float STAR_MOVE_TIME = 1f;
-
+    internal Color color;
 
     void Start()
     {

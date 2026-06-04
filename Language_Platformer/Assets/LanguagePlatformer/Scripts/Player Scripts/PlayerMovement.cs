@@ -4,6 +4,8 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,10 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private int _groundHits = 0;
     private static float INTERACT_TRIGGER_DELAY = 0.5f;
     private static float GROUND_TRIGGER_DELAY = 0.15f;
+    private static float TEXT_DISPLAY_LENGTH = 1.8f;
 
     [SerializeField] private float _currSpeed = 0.0f;
     private float SLOW_MULTIPLIER = 0.67f;
     private float FAST_MULTIPLIER = 1.5f;
+    
     private bool slowGliding = false;
 
     private Rigidbody2D rigidBody;
@@ -43,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputHandler inputHandler;
     private Animator animator;
     private List<Interactable> inputReceivers;
+    private GameObject canvas;
+    private TextMeshProUGUI tmPro;
 
     private void Start()
     {
@@ -52,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
         inputHandler = PlayerInputHandler.Instance; // The InputHandler Instance
         animator = GetComponent<Animator>();
         inputReceivers = new List<Interactable>();
+        canvas = GameObject.Find("Canvas");
+        tmPro = canvas.transform.Find("Panel").Find("Text_Block").GetComponent<TextMeshProUGUI>();
     }
 
     IEnumerator interactOffset()
@@ -213,6 +221,47 @@ public class PlayerMovement : MonoBehaviour
                 animator.Play("IdleLeft");
         }
 
+    }
+
+    IEnumerator TextDelay(string s)
+    {
+        float incrementer = 0f;
+        float fadeTime = 0.4f;
+        float ratio = 0f;
+        Color currColor = tmPro.color;
+
+
+        while (incrementer < fadeTime)
+        {
+            incrementer += Time.deltaTime;
+            ratio = Mathf.Clamp01(incrementer / fadeTime);
+            currColor.a = ratio;
+            tmPro.color = currColor;
+            yield return null;
+        }
+
+        incrementer = 0f;
+        while (incrementer < TEXT_DISPLAY_LENGTH)
+        {
+            incrementer += Time.deltaTime;
+            yield return null;
+        }
+
+        incrementer = 0f;
+        while (incrementer < fadeTime)
+        {
+            incrementer += Time.deltaTime;
+            ratio = Mathf.Clamp01(incrementer / fadeTime);
+            currColor.a = 1 - ratio;
+            tmPro.color = currColor;
+            yield return null;
+        }
+
+    }
+    public void ShowText(string s)
+    {
+        tmPro.text = s;
+        StartCoroutine(TextDelay(s));
     }
 
     public void AddInput(Interactable comp)
