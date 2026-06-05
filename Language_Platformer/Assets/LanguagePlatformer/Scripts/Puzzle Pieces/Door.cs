@@ -14,11 +14,16 @@ public class Door : Activator, Interactable
     private PlayerMovement movement;
 
     public List<Activator> activators;
+    public AudioClip doorOpen;
+    public AudioClip doorClose;
+    private AudioSource audioSource;
 
     void Start()
     {
         coll = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
     void Update()
     {
@@ -47,12 +52,16 @@ public class Door : Activator, Interactable
     {
         coll.enabled = true;
         spriteRenderer.sprite = closedDoor;
+        audioSource.clip = doorClose;
+        audioSource.Play();
 
     }
     private void OpenDoor()
     {
         coll.enabled = false;
         spriteRenderer.sprite = openedDoor;
+        audioSource.clip = doorOpen;
+        audioSource.Play();
     }
 
     
