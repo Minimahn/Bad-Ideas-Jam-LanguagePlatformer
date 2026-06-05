@@ -10,6 +10,7 @@ public class Decay : MonoBehaviour
     [SerializeField] bool identityRotation = false;
 
     private float timeExisting = 0;
+    private bool spellOn = true;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class Decay : MonoBehaviour
         
         if (timeExisting >= decayTime + GetComponent<ParticleSystem>().main.duration)
         {
+            spellOn = false;
             Destroy(gameObject);
         }
         
@@ -36,5 +38,10 @@ public class Decay : MonoBehaviour
 
         transform.position += transform.right * -speed * Time.deltaTime;
         speed = Mathf.Clamp(speed - (speedDecay * Time.deltaTime), 0, Mathf.Infinity);
+    }
+
+    public bool SpellActive()
+    {
+        return spellOn;
     }
 }

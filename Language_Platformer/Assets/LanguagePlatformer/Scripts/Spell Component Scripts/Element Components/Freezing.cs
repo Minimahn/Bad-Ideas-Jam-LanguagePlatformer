@@ -39,7 +39,7 @@ public class Freezing : MonoBehaviour
     // copying playertilemanager rn
     void FixedUpdate()
     {
-        if (!decay.IsSpellActive())
+        if (decay.SpellActive())
         {
 
         transform.rotation = Quaternion.Euler(0, 0, wand.transform.rotation.eulerAngles.z);
