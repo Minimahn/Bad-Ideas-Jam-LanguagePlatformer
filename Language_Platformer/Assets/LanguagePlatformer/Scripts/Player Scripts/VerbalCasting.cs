@@ -56,7 +56,7 @@ public class VerbalCasting : MonoBehaviour
             recognizer.Dispose();
         }
         string[] spellNames = spells.Select(s => s.spellName).ToArray();
-        recognizer = new KeywordRecognizer(spellNames, ConfidenceLevel.Low);
+        recognizer = new KeywordRecognizer(spellNames, ConfidenceLevel.High);
         recognizer.OnPhraseRecognized += OnPhraseRecognized;
         recognizer.Start();
     }
