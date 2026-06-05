@@ -38,6 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7687559278579434663}
+  - {fileID: 8893272995723011780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2774751508963939649
@@ -114,7 +115,7 @@ MonoBehaviour:
   walkSpeed: 7
   braking: 5
   acceleration: 1
-  jumpForce: 130
+  jumpForce: 160
   fallAcceleration: 0.05
   gravity: 9.8
   mass: 22.4
@@ -137,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VerbalCasting
   spells:
-  - spellName: Double Scoop
+  - spellName: Fire
     spellFunction:
       m_PersistentCalls:
         m_Calls:
@@ -154,8 +155,43 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     spellActivated: 1
+  - spellName: Light
+    spellFunction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2395167822887808330}
+          m_TargetAssemblyTypeName: VerbalCasting, Assembly-CSharp
+          m_MethodName: Lighten
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    spellActivated: 1
+  - spellName: Mist
+    spellFunction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2395167822887808330}
+          m_TargetAssemblyTypeName: VerbalCasting, Assembly-CSharp
+          m_MethodName: ColdTuah
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    spellActivated: 1
   fireball: {fileID: 8851904828664815683, guid: 3dc4e742a50fa144782688118020f0bb, type: 3}
-  lightball: {fileID: 0}
+  lightball: {fileID: 1354073418109109283, guid: 982738c613296094e9d407fc11198fbd, type: 3}
+  freezeBreath: {fileID: 226930902620671498, guid: eb9af1dd3c89ddf41911d72fddedf7e6, type: 3}
 --- !u!50 &6118561211137707463
 Rigidbody2D:
   serializedVersion: 5
@@ -267,6 +303,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4525640749585256960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8893272995723011780}
+  m_Layer: 0
+  m_Name: Mouth Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8893272995723011780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525640749585256960}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1632313521143659898}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6004114878049119223
 GameObject:
   m_ObjectHideFlags: 0

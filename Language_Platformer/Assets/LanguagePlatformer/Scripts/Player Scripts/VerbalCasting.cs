@@ -95,4 +95,11 @@ public class VerbalCasting : MonoBehaviour
         Instantiate(lightball, new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z), transform.rotation, transform);
     }
 
+    [SerializeField] private GameObject freezeBreath;
+    public void ColdTuah()
+    {
+        GameObject castPos = GameObject.Find("Mouth Position");
+        GameObject spell = Instantiate(freezeBreath, castPos.transform);
+
+    }
 }

@@ -21,6 +21,8 @@ public class Decay : MonoBehaviour
     {
         if (timeExisting >= decayTime && !GetComponent<ParticleSystem>().isStopped)
         {
+            if (GetComponent<Collider2D>())
+                GetComponent<Collider2D>().enabled = false;
             GetComponent<ParticleSystem>().Stop();
             onDestroy.Invoke();
         } 
