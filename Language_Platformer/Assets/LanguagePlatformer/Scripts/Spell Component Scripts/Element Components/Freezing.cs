@@ -13,6 +13,7 @@ public class Freezing : MonoBehaviour
     private Vector2 p1;
     private Vector2 p2;
     private Vector2 p3;
+    private Decay decay;
 
     private GameObject wand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +26,7 @@ public class Freezing : MonoBehaviour
         special = grid.transform.Find("Special").GetComponent<Tilemap>();
         baseTileDatas = new Dictionary<ScriptableTile, BasicTileData>();
         tileController = grid.GetComponent<TileController>();
+        decay = GetComponent<Decay>();
 
         foreach (var tileData in grid.GetComponent<PlayerTileManager>().tileDatas)
         {
@@ -37,6 +39,9 @@ public class Freezing : MonoBehaviour
     // copying playertilemanager rn
     void FixedUpdate()
     {
+        if (!decay.IsSpellActive())
+        {
+
         transform.rotation = Quaternion.Euler(0, 0, wand.transform.rotation.eulerAngles.z);
         List<Vector3Int> closeTilePositions = new List<Vector3Int>();
         List<Vector3Int> freezingTiles = new List<Vector3Int>();
@@ -76,6 +81,8 @@ public class Freezing : MonoBehaviour
             }
         }
         tileController.AddToFreeze(freezingTiles);
+
+        }
     }
 
     private bool IsPointInCone(Vector3Int pt)

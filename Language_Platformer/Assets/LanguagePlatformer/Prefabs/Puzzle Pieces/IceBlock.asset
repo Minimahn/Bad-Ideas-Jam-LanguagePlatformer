@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b21ccc5c0b65f554cb255384adb83821, type: 3}
-  m_Name: WindBlock
+  m_Name: IceBlock
   m_EditorClassIdentifier: Assembly-CSharp::ElementalActivator
   baseSprite: {fileID: 0}
   spriteKeys: []
