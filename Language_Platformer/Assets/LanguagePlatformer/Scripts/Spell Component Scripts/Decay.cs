@@ -27,7 +27,7 @@ public class Decay : MonoBehaviour
             onDestroy.Invoke();
         } 
         
-        if (timeExisting >= (decayTime + 5))
+        if (timeExisting >= decayTime)
         {
             Destroy(gameObject);
         }

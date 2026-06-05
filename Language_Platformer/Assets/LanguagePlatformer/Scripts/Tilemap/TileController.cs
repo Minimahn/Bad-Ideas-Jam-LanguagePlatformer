@@ -22,7 +22,7 @@ public class TileController : MonoBehaviour
     private Tilemap special;
     private Tilemap lighting;
     private Dictionary<ScriptableTile, BasicTileData> baseTileDatas;
-
+    
     void Start()
     {
         physical = transform.Find("Physical").GetComponent<Tilemap>();
@@ -152,13 +152,15 @@ public class TileController : MonoBehaviour
     IEnumerator FreezeTile(Vector3Int pos)
     {
         float incrementer = 0f; 
-        ScriptableTile tile = (ScriptableTile)physical.GetTile(pos);
-        tile.SetSprite("freeze", physical, pos);
+        ScriptableTile newTile = GetComponent<PlayerTileManager>().tileDatas[8].tile;
+        physical.SetTile(pos, newTile);
+
         while (incrementer < freezeTime)
         {
             incrementer += Time.deltaTime;
             yield return null;
         }
+        freezingTiles.Remove(pos);
         physical.SetTile(pos, null); //delete tile
         yield return null;
     }
@@ -171,7 +173,7 @@ public class TileController : MonoBehaviour
             if (!freezingTiles.Contains(tilepos))
             {
                 freezingTiles.Add(tilepos);
-
+                StartCoroutine(FreezeTile(tilepos));
             }
         }
     }

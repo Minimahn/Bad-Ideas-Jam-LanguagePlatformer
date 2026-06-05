@@ -38,13 +38,17 @@ public class ElementalActivatorController : Activator
         print(other);
         if (other.transform.tag == "Spell" && other.transform.GetComponent(spellType) != null)
         {
-            restart = true;
             spriteRenderer.sprite = spritePairs["on"];
             Destroy(other.gameObject);
-            if (!active)
+            if (!active) {
                 active = true;
                 audioSource.Play();
                 StartCoroutine(ActivatorTime());
+            }
+            else
+            {
+                restart = true;
+            }
         }
     }
 
@@ -60,9 +64,11 @@ public class ElementalActivatorController : Activator
         while (incrementer < duration)
         {
             if (restart)
+            {
                 audioSource.Stop();
                 incrementer = 0f;
                 restart = false;
+            }
             incrementer += Time.deltaTime;
             yield return null;
         }
