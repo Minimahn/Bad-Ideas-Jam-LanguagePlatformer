@@ -11,12 +11,15 @@ public class ElementalActivatorController : Activator
     private Sprite baseSprite;
     private string spellType; //could be an enum setup for spells
     private float duration;
+    private AudioSource audioSource;
     private bool active = false;
     private bool restart = false;
     void Start()
     {
         coll = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = elementalActivator.clip;
         baseSprite = elementalActivator.baseSprite;
         spellType = elementalActivator.spellType;
         duration = elementalActivator.duration;
@@ -40,6 +43,7 @@ public class ElementalActivatorController : Activator
             Destroy(other.gameObject);
             if (!active)
                 active = true;
+                audioSource.Play();
                 StartCoroutine(ActivatorTime());
         }
     }
@@ -56,6 +60,7 @@ public class ElementalActivatorController : Activator
         while (incrementer < duration)
         {
             if (restart)
+                audioSource.Stop();
                 incrementer = 0f;
                 restart = false;
             incrementer += Time.deltaTime;

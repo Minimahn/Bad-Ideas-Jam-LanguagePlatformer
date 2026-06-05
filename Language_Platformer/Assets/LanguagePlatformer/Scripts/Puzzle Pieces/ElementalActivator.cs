@@ -8,5 +8,6 @@ public class ElementalActivator : ScriptableObject
     public Sprite[] spriteValues;
     public float duration;
     public string spellType;
+    public AudioClip clip;
 
 }
