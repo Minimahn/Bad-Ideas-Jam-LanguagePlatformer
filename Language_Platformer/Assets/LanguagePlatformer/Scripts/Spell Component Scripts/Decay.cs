@@ -27,7 +27,7 @@ public class Decay : MonoBehaviour
             onDestroy.Invoke();
         } 
         
-        if (timeExisting >= decayTime)
+        if (timeExisting >= decayTime + GetComponent<ParticleSystem>().main.duration)
         {
             Destroy(gameObject);
         }
