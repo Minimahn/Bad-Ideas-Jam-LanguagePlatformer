@@ -13,6 +13,7 @@ public class PlayerTileManager : MonoBehaviour
     private Tilemap special;
     private Tilemap lighting;
     private TileController tileController;
+    private PlayerMovement movement;
     private Dictionary<ScriptableTile, BasicTileData> baseTileDatas;
 
 
@@ -30,6 +31,7 @@ public class PlayerTileManager : MonoBehaviour
 
     void Start()
     {
+        movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         tileController = GetComponent<TileController>();
         physical = transform.Find("Physical").GetComponent<Tilemap>();
         special = transform.Find("Special").GetComponent<Tilemap>();
@@ -39,6 +41,7 @@ public class PlayerTileManager : MonoBehaviour
 
     void Update() //check nearby tiles to player
     {
+
         List<Vector3Int> closeTilePositions = new List<Vector3Int>();
         BoundsInt bounds = new BoundsInt();
         bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
@@ -57,6 +60,23 @@ public class PlayerTileManager : MonoBehaviour
         }
 
         baseTileCheck(closeTilePositions);
+        WaterCheck(TileController.getColumnTilesWithinRadius(plr.transform.position, 0.9f));
+    }
+
+
+    private void WaterCheck(List<Vector3Int> positions)
+    {
+        bool foundWater = true;
+        foreach (var pos in positions)
+        {
+            ScriptableTile tile = (ScriptableTile)special.GetTile(pos);
+            if (tile == null) //if its not null from special, I know its water
+            {
+                foundWater = false;
+            }
+        }
+        if (positions.Count > 0)
+            movement.SetSub(foundWater);
     }
 
     private void baseTileCheck(List<Vector3Int> positions)

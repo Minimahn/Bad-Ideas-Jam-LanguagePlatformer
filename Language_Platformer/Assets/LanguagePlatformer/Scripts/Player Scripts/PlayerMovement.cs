@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _interacting = false;
     private bool _grounded = false;
     private bool _coyoteGrounded = false;
+    private bool _submerged = false;
+    private bool fromWater = false;
     private bool runningCor = false;
     private int _groundHits = 0;
     private static float INTERACT_TRIGGER_DELAY = 0.5f;
@@ -99,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         _groundHits = Physics2D.BoxCast(pos, size, 0, -transform.up, filter, list, 0.5f);
         if (_groundHits > 0)
         {
+            fromWater = false;
             _grounded = true;
             _coyoteGrounded = true;
         } else if (_groundHits <= 0 && !runningCor)
@@ -178,12 +181,20 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (clampDisabled)
-                rigidBody.AddForceY(-weight * _fallAcc, ForceMode2D.Force);
-            else
-                rigidBody.AddForceY(Mathf.Clamp(-weight * _fallAcc, -fallSpeedClamp, Mathf.Infinity), ForceMode2D.Force);
+            if (!_submerged)
+            {
+                if (clampDisabled)
+                    rigidBody.AddForceY(-weight * _fallAcc, ForceMode2D.Force);
+                else
+                    rigidBody.AddForceY(Mathf.Clamp(-weight * _fallAcc, -fallSpeedClamp, Mathf.Infinity), ForceMode2D.Force);
 
-            _fallAcc += fallAcceleration;
+                if (!fromWater)
+                    _fallAcc += fallAcceleration;
+            }
+            else
+            {
+                rigidBody.AddForceY((weight) * _fallAcc, ForceMode2D.Force);
+            }
         }
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
         {
@@ -271,5 +282,14 @@ public class PlayerMovement : MonoBehaviour
     public void RemoveInput(Interactable comp)
     {
         inputReceivers.Remove(comp);
+    }
+
+    public void SetSub(bool b)
+    {
+        if (_submerged != b)
+            _fallAcc = 1;
+        if (b)
+            fromWater = true;
+        _submerged = b;
     }
 }
