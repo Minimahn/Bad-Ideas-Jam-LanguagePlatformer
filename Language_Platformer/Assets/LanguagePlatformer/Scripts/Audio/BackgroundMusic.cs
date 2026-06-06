@@ -1,6 +1,4 @@
-using System.Data.Common;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class BackgroundMusic : MonoBehaviour
 {
@@ -12,10 +10,25 @@ public class BackgroundMusic : MonoBehaviour
     private bool current = true;
     void Start()
     {
+        // update this later to have beats as an array and to randomly select based on the size of it so we don't need to change this each time
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = beatOne;
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            audioSource.clip = beatOne;
+            nextBeat = beatTwo;
+        }
+        else
+        {
+            audioSource.clip = beatTwo;
+            nextBeat = beatOne;
+        }
         audioSource.Play();
-        nextBeat = beatTwo;
+    }
+
+    private void OnDestroy()
+    {
+        audioSource.Stop();
     }
 
     void LateUpdate()
