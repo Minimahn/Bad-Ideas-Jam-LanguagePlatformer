@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2494071686973237174}
   - component: {fileID: 7220331164447124559}
   - component: {fileID: 3355642255322475305}
+  - component: {fileID: 530570107028188379}
   m_Layer: 0
   m_Name: SoundBox
   m_TagString: Untagged
@@ -45,7 +46,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4124b5d86536f8643b7dd4d798d8ab48, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 0.9
   Loop: 1
@@ -142,3 +143,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f243bffe00bcbfa4dac5cba65a3dd1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DontDestroyMe
+--- !u!114 &530570107028188379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246499747453515646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de665d129ae04e40927209f37600b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusic
+  beatOne: {fileID: 8300000, guid: c68a8f1e9d1b53e4fa33274fa5975103, type: 3}
+  beatTwo: {fileID: 8300000, guid: 4124b5d86536f8643b7dd4d798d8ab48, type: 3}

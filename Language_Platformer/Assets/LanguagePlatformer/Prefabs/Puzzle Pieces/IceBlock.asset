@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21ccc5c0b65f554cb255384adb83821, type: 3}
   m_Name: IceBlock
   m_EditorClassIdentifier: Assembly-CSharp::ElementalActivator
-  baseSprite: {fileID: 0}
-  spriteKeys: []
-  spriteValues: []
-  duration: 3
-  spellType: Wind
+  baseSprite: {fileID: 4845318763542612454, guid: e8289a60ac872f540a7d4f09968ca2fd, type: 3}
+  spriteKeys:
+  - off
+  - on
+  spriteValues:
+  - {fileID: 4845318763542612454, guid: e8289a60ac872f540a7d4f09968ca2fd, type: 3}
+  - {fileID: -129542760296644661, guid: e8289a60ac872f540a7d4f09968ca2fd, type: 3}
+  duration: 8
+  spellType: Freezing
+  clip: {fileID: 0}

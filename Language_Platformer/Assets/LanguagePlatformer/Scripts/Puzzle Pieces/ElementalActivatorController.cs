@@ -39,7 +39,8 @@ public class ElementalActivatorController : Activator
         if (other.transform.tag == "Spell" && other.transform.GetComponent(spellType) != null)
         {
             spriteRenderer.sprite = spritePairs["on"];
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Collider2D>().enabled = false;
+            //Destroy(other.gameObject);
             if (!active) {
                 active = true;
                 audioSource.Play();

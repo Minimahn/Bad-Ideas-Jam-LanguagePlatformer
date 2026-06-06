@@ -809,7 +809,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47652b60968b9de44963ef1fac15f5b8, type: 2}
   - {fileID: 11400000, guid: 35345d33c62bbe54fb69b466abe1908b, type: 2}
   - {fileID: 11400000, guid: 08d622fb8d9dd044dab0d6ade49ce108, type: 2}
-  plr: {fileID: 0}
+  - {fileID: 11400000, guid: 60be41d133d0a2a498300088b219f597, type: 2}
+  - {fileID: 11400000, guid: f3b846033e24d114a8eabd406228141e, type: 2}
+  - {fileID: 11400000, guid: e609c11a8003d9a46b1f48c6553dc897, type: 2}
+  - {fileID: 11400000, guid: ebd4aab8a4bae3e498c9a652e6c3fd71, type: 2}
+  - {fileID: 11400000, guid: 402f11ff61e76a440a90f9560066ab68, type: 2}
+  - {fileID: 11400000, guid: edcac7aab4c72ae47b7c7b5ffae916d0, type: 2}
+  - {fileID: 11400000, guid: 9e8a710a6fba9e140a1721a9c6a1f231, type: 2}
+  - {fileID: 11400000, guid: 5103d2631f7989a49b2559bcdc5bfbae, type: 2}
+  - {fileID: 11400000, guid: f3b5092e2286a9244915987015240924, type: 2}
+  - {fileID: 11400000, guid: 20016af2155e40a409871940614d5797, type: 2}
 --- !u!114 &6016293191463221156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9c1f3180517a54ca2ed3bb2e06dbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileController
-  player: {fileID: 0}
 --- !u!1 &7454502692472097517
 GameObject:
   m_ObjectHideFlags: 0

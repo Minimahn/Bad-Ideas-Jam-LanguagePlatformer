@@ -19,6 +19,6 @@ MonoBehaviour:
   spriteValues:
   - {fileID: 144867534152999230, guid: e8289a60ac872f540a7d4f09968ca2fd, type: 3}
   - {fileID: 476949061126287208, guid: e8289a60ac872f540a7d4f09968ca2fd, type: 3}
-  duration: 5
+  duration: 8
   spellType: Fire
   clip: {fileID: 8300000, guid: 0ae8e88144ea7ae429fb4dd24aed4271, type: 3}
