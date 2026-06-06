@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(TrackLastGroundedPositionRoutine());
     }
 
+
     IEnumerator interactOffset()
     {
         _interacting = true;
@@ -140,12 +141,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    [SerializeField] GameObject gumbus;
 
     private void Update()
     {
-        gumbus.transform.position = lastGrounded;
-
         groundCheck();
         //print("Grounded:" + _grounded + " - CoyoteGrounded: " + _coyoteGrounded);
         // work towards making _currspeed sprint speed

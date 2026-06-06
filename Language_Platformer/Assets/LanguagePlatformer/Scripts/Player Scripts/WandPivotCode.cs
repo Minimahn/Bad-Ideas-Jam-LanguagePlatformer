@@ -5,23 +5,17 @@ using UnityEngine.UIElements;
 
 public class WandPivotCode : MonoBehaviour
 {
-    GameObject player;
-    Camera cam;
-
     [Header("Modifiable Data")]
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private float maxDistance = 1.5f;
     [SerializeField] private float followSpeed = 10.0f;
 
-    void Start()
-    {
-        player = GameObject.Find("Player");
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-    }
-
     // Update is called once per frame
     void Update()
     {
+        GameObject player = GameObject.Find("Player");
+        Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+
         Vector2 screenSpace = Mouse.current.position.ReadValue();
         Vector2 mousePos = cam.ScreenToWorldPoint(screenSpace);
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);

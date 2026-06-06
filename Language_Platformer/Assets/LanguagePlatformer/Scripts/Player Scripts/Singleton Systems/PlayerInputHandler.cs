@@ -17,7 +17,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Instance = this;
             // Won't destroy gameobject if already exists
-            DontDestroyOnLoad(gameObject);
+            //  DontDestroyOnLoad(gameObject);
         } else
         {
             // Will destroy gameobject if it does exist already
