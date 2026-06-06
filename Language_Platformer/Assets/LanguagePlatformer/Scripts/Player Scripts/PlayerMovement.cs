@@ -1,9 +1,10 @@
 
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -222,7 +223,8 @@ public class PlayerMovement : MonoBehaviour
                     _fallAcc += fallAcceleration;
             } else
             {
-                transform.position = lastGrounded;
+                //transform.position = lastGrounded;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
         }

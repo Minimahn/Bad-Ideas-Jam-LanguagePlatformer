@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2494071686973237174}
   - component: {fileID: 7220331164447124559}
-  - component: {fileID: 3355642255322475305}
   - component: {fileID: 530570107028188379}
   m_Layer: 0
   m_Name: SoundBox
@@ -131,18 +130,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3355642255322475305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6246499747453515646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f243bffe00bcbfa4dac5cba65a3dd1c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DontDestroyMe
 --- !u!114 &530570107028188379
 MonoBehaviour:
   m_ObjectHideFlags: 0
