@@ -80,7 +80,7 @@ public class Portal : Activator, Interactable
         {
             //teleport player
             audioSource.Play();
-            movement.transform.position = destination.transform.position;
+            movement.transform.position = new Vector3(destination.transform.position.x, destination.transform.position.y + 0.2f, destination.transform.position.z);
         }
     }
     public override bool GetActive()

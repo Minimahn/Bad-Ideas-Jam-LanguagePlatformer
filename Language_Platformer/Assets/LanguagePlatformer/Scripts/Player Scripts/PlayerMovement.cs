@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _grounded = false;
     private bool _coyoteGrounded = false;
     private bool _submerged = false;
+    private bool _nearWater = false;
     private bool fromWater = false;
     private bool runningCor = false;
     private Vector2 lastGrounded;
@@ -111,9 +112,9 @@ public class PlayerMovement : MonoBehaviour
 
                 // ADD CHECKS TO SEE IF TOO CLOSE TO WATER HERE
 
-                if (_grounded)
+                if (_grounded && !_nearWater)
                 {
-                    lastGrounded = transform.position;
+                    lastGrounded = new Vector2(transform.position.x, transform.position.y + 0.1f);
                 }
             }
 
@@ -320,5 +321,10 @@ public class PlayerMovement : MonoBehaviour
         if (b)
             fromWater = true;
         _submerged = b;
+    }
+
+    public void SetNearWater(bool b)
+    {
+        _nearWater = b;
     }
 }

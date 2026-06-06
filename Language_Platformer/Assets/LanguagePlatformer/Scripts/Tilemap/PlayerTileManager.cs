@@ -62,9 +62,22 @@ public class PlayerTileManager : MonoBehaviour
 
         baseTileCheck(closeTilePositions);
         WaterCheck(TileController.getColumnTilesWithinRadius(plr.transform.position, 0.9f));
+        NearWaterCheck(TileController.getTilesWithinRadius(plr.transform.position, 6f));
     }
 
-
+    private void NearWaterCheck(List<Vector3Int> positions)
+    {
+        bool nearWater = false;
+        foreach (var pos in positions)
+        {
+            ScriptableTile tile = (ScriptableTile)special.GetTile(pos);
+            if (tile != null) //if its not null from special, I know its water
+            {
+                nearWater = true;
+            }
+        }
+        movement.SetNearWater(nearWater);
+    }
     private void WaterCheck(List<Vector3Int> positions)
     {
         bool foundWater = true;

@@ -4,6 +4,12 @@ public class LevelInfo : MonoBehaviour
 {
     private Vector3 spawnPoint;
 
+
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public Vector3 getSpawnPoint()
     {
         return spawnPoint;
