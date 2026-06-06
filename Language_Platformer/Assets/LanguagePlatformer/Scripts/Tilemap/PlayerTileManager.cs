@@ -8,7 +8,7 @@ public class PlayerTileManager : MonoBehaviour
 {
     
     public BasicTileData[] tileDatas;
-    public GameObject plr;
+    private GameObject plr;
     private Tilemap physical;
     private Tilemap special;
     private Tilemap lighting;
@@ -36,6 +36,7 @@ public class PlayerTileManager : MonoBehaviour
         physical = transform.Find("Physical").GetComponent<Tilemap>();
         special = transform.Find("Special").GetComponent<Tilemap>();
         lighting = transform.Find("Lighting").GetComponent<Tilemap>();
+        plr = GameObject.Find("Player");
     }
 
 
@@ -44,8 +45,8 @@ public class PlayerTileManager : MonoBehaviour
 
         List<Vector3Int> closeTilePositions = new List<Vector3Int>();
         BoundsInt bounds = new BoundsInt();
-        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
-        new Vector3Int((int)plr.transform.position.x + 2, (int)plr.transform.position.y + 2, (int)plr.transform.position.z + 1));
+        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 5, (int)plr.transform.position.z),
+        new Vector3Int((int)plr.transform.position.x + 3, (int)plr.transform.position.y + 2, (int)plr.transform.position.z + 1));
         
         foreach (var pt in bounds.allPositionsWithin)
         {
@@ -55,7 +56,7 @@ public class PlayerTileManager : MonoBehaviour
             if (closestPt.y < plr.transform.position.y)
                 closestPt.y += 1;
             float distToPlr = math.abs((closestPt - plr.transform.position).magnitude);
-            if (distToPlr < 3.1f)
+            if (distToPlr < 8.1f)
                 closeTilePositions.Add(pt); //list of Vector3Int
         }
 

@@ -17,7 +17,7 @@ public class TileController : MonoBehaviour
     private float freezeTime = 5f;
     private float burnTime = 3f;
 
-    public GameObject player;
+    private GameObject player;
     private Tilemap physical;
     private Tilemap special;
     private Tilemap lighting;
@@ -29,6 +29,7 @@ public class TileController : MonoBehaviour
         special = transform.Find("Special").GetComponent<Tilemap>();
         lighting = transform.Find("Lighting").GetComponent<Tilemap>();
         baseTileDatas = new Dictionary<ScriptableTile, BasicTileData>();
+        player = GameObject.Find("Player");
 
         foreach (var tileData in GetComponent<PlayerTileManager>().tileDatas)
         {
