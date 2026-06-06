@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LanguagePlatformer/Scenes/DemoScenes/Level3.unity
     guid: bee6d27125dcf9e459dfbc06c972e59d
+  - enabled: 1
+    path: Assets/LanguagePlatformer/Scenes/DemoScenes/Level4.unity
+    guid: a9c8baef1fd4ace45971432943807802
+  - enabled: 1
+    path: Assets/LanguagePlatformer/Scenes/DemoScenes/Level5.unity
+    guid: 8b8aefd6ee3f0c04c9ccf94db3a84fb9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

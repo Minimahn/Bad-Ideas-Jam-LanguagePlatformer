@@ -16,6 +16,6 @@ MonoBehaviour:
   spriteKeys: []
   spriteValues: []
   permanent: 1
-  loadNec: 4
+  loadNec: 3
   fallTime: 1
   riseTime: 0.5
