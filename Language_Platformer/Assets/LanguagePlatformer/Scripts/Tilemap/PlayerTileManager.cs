@@ -45,26 +45,32 @@ public class PlayerTileManager : MonoBehaviour
 
         List<Vector3Int> closeTilePositions = new List<Vector3Int>();
         BoundsInt bounds = new BoundsInt();
-        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 5, (int)plr.transform.position.z),
-        new Vector3Int((int)plr.transform.position.x + 3, (int)plr.transform.position.y + 2, (int)plr.transform.position.z + 1));
+        bounds.SetMinMax(new Vector3Int((int)plr.transform.position.x - 3, (int)plr.transform.position.y - 4, (int)plr.transform.position.z),
+        new Vector3Int((int)plr.transform.position.x + 3, (int)plr.transform.position.y + 3, (int)plr.transform.position.z + 1));
         
         foreach (var pt in bounds.allPositionsWithin)
         {
-            Vector3Int closestPt = new Vector3Int(pt.x, pt.y, pt.z);
-            if (closestPt.x < plr.transform.position.x)
-                closestPt.x += 1;
-            if (closestPt.y < plr.transform.position.y)
-                closestPt.y += 1;
-            float distToPlr = math.abs((closestPt - plr.transform.position).magnitude);
-            if (distToPlr < 8.1f)
-                closeTilePositions.Add(pt); //list of Vector3Int
+            closeTilePositions.Add(pt); //list of Vector3Int
         }
 
         baseTileCheck(closeTilePositions);
         WaterCheck(TileController.getColumnTilesWithinRadius(plr.transform.position, 0.9f));
+        NearWaterCheck(TileController.getTilesWithinRadius(plr.transform.position, 6f));
     }
 
-
+    private void NearWaterCheck(List<Vector3Int> positions)
+    {
+        bool nearWater = false;
+        foreach (var pos in positions)
+        {
+            ScriptableTile tile = (ScriptableTile)special.GetTile(pos);
+            if (tile != null) //if its not null from special, I know its water
+            {
+                nearWater = true;
+            }
+        }
+        movement.SetNearWater(nearWater);
+    }
     private void WaterCheck(List<Vector3Int> positions)
     {
         bool foundWater = true;

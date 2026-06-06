@@ -33,8 +33,8 @@ public class Fire : MonoBehaviour
         List<Vector3Int> burningTiles = new List<Vector3Int>();
 
         BoundsInt bounds = new BoundsInt();
-        bounds.SetMinMax(new Vector3Int((int)transform.position.x - 1, (int)transform.position.y - 1, (int)transform.position.z),
-        new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z + 1));
+        bounds.SetMinMax(new Vector3Int((int)(transform.position.x - 1), (int)(transform.position.y - 1), (int)transform.position.z-1),
+        new Vector3Int((int)(transform.position.x+1), (int)(transform.position.y+1), (int)transform.position.z + 1));
 
         foreach (var pt in bounds.allPositionsWithin)
         {
