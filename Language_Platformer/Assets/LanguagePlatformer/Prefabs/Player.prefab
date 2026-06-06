@@ -115,7 +115,7 @@ MonoBehaviour:
   walkSpeed: 7
   braking: 5
   acceleration: 1
-  jumpForce: 160
+  jumpForce: 170
   fallAcceleration: 0.05
   gravity: 9.8
   mass: 22.4
@@ -124,6 +124,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundTrackInterval: 0.5
+  drownTimer: 1
   _currSpeed: 0
 --- !u!114 &2395167822887808330
 MonoBehaviour:
@@ -138,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VerbalCasting
   spells:
-  - spellName: Fire
+  - spellName: Test
     spellFunction:
       m_PersistentCalls:
         m_Calls:
