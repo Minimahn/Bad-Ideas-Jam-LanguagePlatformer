@@ -124,6 +124,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundTrackInterval: 0.5
+  drownTimer: 1
   _currSpeed: 0
 --- !u!114 &2395167822887808330
 MonoBehaviour:
@@ -138,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VerbalCasting
   spells:
-  - spellName: Fire
+  - spellName: Flame
     spellFunction:
       m_PersistentCalls:
         m_Calls:
@@ -172,7 +174,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     spellActivated: 1
-  - spellName: Mist
+  - spellName: Freeze
     spellFunction:
       m_PersistentCalls:
         m_Calls:
