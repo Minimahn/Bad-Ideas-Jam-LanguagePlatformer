@@ -3,12 +3,13 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     private Camera cam;
-    [SerializeField] private GameObject plr;
+    private GameObject plr;
 
 
     void Start()
     {
         cam = GetComponent<Camera>();
+        plr = GameObject.Find("Player");
         Cursor.visible = false; //disable mouse cursor
     }
 

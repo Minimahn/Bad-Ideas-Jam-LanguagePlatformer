@@ -15,7 +15,7 @@ MonoBehaviour:
   baseSprite: {fileID: 1448118481202440781, guid: 67d8c74c6857a774ba564fa27f5f5787, type: 3}
   spriteKeys: []
   spriteValues: []
-  permanent: 0
+  permanent: 1
   loadNec: 4
   fallTime: 1
   riseTime: 0.5

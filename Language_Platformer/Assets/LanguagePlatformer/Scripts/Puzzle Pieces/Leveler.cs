@@ -40,6 +40,7 @@ public class Leveler : MonoBehaviour, Interactable
     public void Interact()
     {
         if (movement != null) {
+            movement.transform.position = new Vector3(0,0,0);
             SceneManager.LoadScene(nextScene);
         }
     }
