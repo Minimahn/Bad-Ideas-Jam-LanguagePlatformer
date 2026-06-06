@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool clampDisabled = false;
     [Header("Ground Checking")]
     [SerializeField] public LayerMask groundLayer;
+    [SerializeField] private float groundTrackInterval = 0.5f;
+    [Header("Misc Stuffs")]
+    [SerializeField] private float drownTimer = 1.0f;
 
     // Secret Variables oooh
     private int directionFacing = 0;
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _submerged = false;
     private bool fromWater = false;
     private bool runningCor = false;
+    private Vector2 lastGrounded;
     private int _groundHits = 0;
     private static float INTERACT_TRIGGER_DELAY = 0.5f;
     private static float GROUND_TRIGGER_DELAY = 0.15f;
@@ -62,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         inputReceivers = new List<Interactable>();
         canvas = GameObject.Find("Canvas");
         tmPro = canvas.transform.Find("Panel").Find("Text_Block").GetComponent<TextMeshProUGUI>();
+        StartCoroutine(TrackLastGroundedPositionRoutine());
     }
 
     IEnumerator interactOffset()
@@ -91,6 +96,29 @@ public class PlayerMovement : MonoBehaviour
             _coyoteGrounded = false;
             runningCor = false;
     }
+    IEnumerator TrackLastGroundedPositionRoutine()
+    {
+        float timer = 0f;
+
+        while (true)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= groundTrackInterval)
+            {
+                timer -= groundTrackInterval;
+
+                // ADD CHECKS TO SEE IF TOO CLOSE TO WATER HERE
+
+                if (_grounded)
+                {
+                    lastGrounded = transform.position;
+                }
+            }
+
+            yield return null;
+        }
+    }
     private void groundCheck()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
@@ -112,9 +140,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    [SerializeField] GameObject gumbus;
 
     private void Update()
     {
+        gumbus.transform.position = lastGrounded;
+
         groundCheck();
         //print("Grounded:" + _grounded + " - CoyoteGrounded: " + _coyoteGrounded);
         // work towards making _currspeed sprint speed
@@ -190,11 +221,11 @@ public class PlayerMovement : MonoBehaviour
 
                 if (!fromWater)
                     _fallAcc += fallAcceleration;
-            }
-            else
+            } else
             {
-                rigidBody.AddForceY((weight) * _fallAcc, ForceMode2D.Force);
+                transform.position = lastGrounded;
             }
+
         }
         if (!inputHandler.JumpTriggered && rigidBody.linearVelocityY > 0)
         {
